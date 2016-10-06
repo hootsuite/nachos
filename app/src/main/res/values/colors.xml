@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tortilla_chip">#FFC107</color>
+    <color name="tortilla_chip_dark">#FFA000</color>
+    <color name="cheese">#FF5722</color>
+</resources>

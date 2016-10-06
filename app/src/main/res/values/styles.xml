@@ -1,0 +1,7 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/tortilla_chip</item>
+        <item name="colorPrimaryDark">@color/tortilla_chip_dark</item>
+        <item name="colorAccent">@color/cheese</item>
+    </style>
+</resources>

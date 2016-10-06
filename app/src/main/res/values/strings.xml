@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Nachos</string>
+
+    <string name="info_text_title">Welcome to the Nachos sample app!</string>
+    <string name="info_text_body"><![CDATA[
+        After typing some text, enter any of the following characters to create a chip:
+        <br/><br/>
+        <b>&lt;enter&gt;</b><br/>Will turn all plain text in the text field into chips
+        <br/><br/>
+        <b>;</b><br/>Will turn the current token into a chip
+        <br/><br/>
+        <b>&lt;space&gt;</b><br/>Will turn the text from the beginning of the current token up to the cursor into a chip
+        <br/><br/>
+        You can also touch a chip to edit it
+        ]]>
+    </string>
+
+    <string name="label_chip_text_view">Try it out:</string>
+    <string name="hint_chip_text_view">Type to create plain chips</string>
+    <string name="hint_chip_text_view_with_icons">Type to create chips with icons</string>
+
+    <string name="btn_list_chip_values">List Chip Values</string>
+    <string name="btn_list_chip_and_token_values">List Chip and Token Values</string>
+    <string name="btn_to_string">toString()</string>
+    <string name="btn_steal_focus">Touch to steal focus and chipify text</string>
+</resources>
