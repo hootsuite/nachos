@@ -45,10 +45,19 @@ Nachos is not directly coupled to any data source so it allows for much more ext
 
 ## <a name="TOC-Installation"></a>Installation ##
 
-Add this line to your build.gradle:
+Add this line to your project level build.gradle:
 
-`compile "com.hootsuite.android:nachos:1.0.0"`
+`buildscript {
+`  repositories {
+`    jcenter()
+`  }
 
+Add this line to your module level build.gradle:
+
+`  dependencies {
+`    compile "com.hootsuite.android:nachos:1.0.0"
+`  }
+`}
 
 ## <a name="TOC-BasicUsage"></a>Basic Usage ##
 
