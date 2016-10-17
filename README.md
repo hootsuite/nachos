@@ -22,10 +22,9 @@
 ## <a name="TOC-WhatIsNachos"></a>What is Nachos? ##
 Nachos is a library for Android that provides a custom TextView allowing users to enter text and create material chips in the text field.
 
-<img src="./images/General_example_1.png" height=256px"/>
+<img src="./images/General_example_1.png" height=256px/>
 
 Nachos is not directly coupled to any data source so it allows for much more extensive customization.
-
 
 ## <a name="TOC-KeyFeatures"></a>Key Features ##
 
@@ -47,17 +46,21 @@ Nachos is not directly coupled to any data source so it allows for much more ext
 
 Add this line to your project level build.gradle:
 
-`buildscript {
-`  repositories {
-`    jcenter()
-`  }
+```groovy
+buildscript {
+  repositories {
+    jcenter()
+  }
+```
 
 Add this line to your module level build.gradle:
 
-`  dependencies {
-`    compile "com.hootsuite.android:nachos:1.0.0"
-`  }
-`}
+```groovy
+  dependencies {
+    compile "com.hootsuite.android:nachos:1.0.0"
+  }
+}
+```
 
 ## <a name="TOC-BasicUsage"></a>Basic Usage ##
 
