@@ -17,6 +17,7 @@
   * [Customizing the Creation/Identification of Chips/Tokens](#TOC-AdvancedUsage-ChipTokenizer)
   * [Using a Custom UI Element for the Chips](#TOC-AdvancedUsage-ChipCreator)
 * [License](#TOC-License)
+* [Acknowledgements](#TOC-Acknowledgements)
 
 ## <a name="TOC-WhatIsNachos"></a>What is Nachos? ##
 Nachos is a library for Android that provides a custom TextView allowing users to enter text and create material chips in the text field.
@@ -317,3 +318,7 @@ nachoTextView.setChipTokenizer(new SpanChipTokenizer<>(this, new ChipCreator<MyS
 ## <a name="TOC-License"></a>License ##
 
 Nachos is released under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+
+## <a name="TOC-Acknowledgements"></a>License ##
+
+Special Thanks to the Primary Author of this library, [Noah Tajwar](https://www.linkedin.com/in/noahtajwar)!
