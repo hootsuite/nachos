@@ -319,6 +319,6 @@ nachoTextView.setChipTokenizer(new SpanChipTokenizer<>(this, new ChipCreator<MyS
 
 Nachos is released under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
 
-## <a name="TOC-Acknowledgements"></a>License ##
+## <a name="TOC-Acknowledgements"></a>Acknowledgements ##
 
 Special Thanks to the Primary Author of this library, [Noah Tajwar](https://github.com/noaht11)!
