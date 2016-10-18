@@ -56,9 +56,8 @@ buildscript {
 Add this line to your module level build.gradle:
 
 ```groovy
-  dependencies {
+dependencies {
     compile "com.hootsuite.android:nachos:1.0.0"
-  }
 }
 ```
 
