@@ -17,14 +17,14 @@
   * [Customizing the Creation/Identification of Chips/Tokens](#TOC-AdvancedUsage-ChipTokenizer)
   * [Using a Custom UI Element for the Chips](#TOC-AdvancedUsage-ChipCreator)
 * [License](#TOC-License)
+* [Acknowledgements](#TOC-Acknowledgements)
 
 ## <a name="TOC-WhatIsNachos"></a>What is Nachos? ##
 Nachos is a library for Android that provides a custom TextView allowing users to enter text and create material chips in the text field.
 
-<img src="./images/General_example_1.png" height=256px"/>
+<img src="./images/General_example_1.png" height=256px/>
 
 Nachos is not directly coupled to any data source so it allows for much more extensive customization.
-
 
 ## <a name="TOC-KeyFeatures"></a>Key Features ##
 
@@ -44,10 +44,22 @@ Nachos is not directly coupled to any data source so it allows for much more ext
 
 ## <a name="TOC-Installation"></a>Installation ##
 
-Add this line to your build.gradle:
+Add this line to your project level build.gradle:
 
-`compile "com.hootsuite.android:nachos:1.0.0"`
+```groovy
+buildscript {
+  repositories {
+    jcenter()
+  }
+```
 
+Add this line to your module level build.gradle:
+
+```groovy
+dependencies {
+    compile "com.hootsuite.android:nachos:1.0.0"
+}
+```
 
 ## <a name="TOC-BasicUsage"></a>Basic Usage ##
 
@@ -317,3 +329,7 @@ nachoTextView.setChipTokenizer(new SpanChipTokenizer<>(this, new ChipCreator<MyS
 ## <a name="TOC-License"></a>License ##
 
 Nachos is released under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+
+## <a name="TOC-Acknowledgements"></a>Acknowledgements ##
+
+Special thanks to the primary author of this library, [Noah Tajwar](https://github.com/noaht11)!
