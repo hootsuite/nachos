@@ -332,4 +332,4 @@ Nachos is released under the Apache License, Version 2.0. See [LICENSE](LICENSE)
 
 ## <a name="TOC-Acknowledgements"></a>Acknowledgements ##
 
-Special thanks to the primary author of this library, [Noah Tajwar](https://github.com/noaht11)!
+Special thanks to the author of nachos, [Noah Tajwar](https://github.com/noaht11) and to the original author of our internal library, [Dave Russell](https://github.com/hootsuitedave)!
