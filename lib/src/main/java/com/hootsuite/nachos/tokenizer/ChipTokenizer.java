@@ -15,13 +15,13 @@ import java.util.List;
  * An extension of {@link android.widget.MultiAutoCompleteTextView.Tokenizer Tokenizer} that provides extra support
  * for chipification.
  * <p>
- *     In the context of this interface, a token is considered to be plain (non-chipped) text. Once a token is terminated it becomes or contains a chip.
+ * In the context of this interface, a token is considered to be plain (non-chipped) text. Once a token is terminated it becomes or contains a chip.
  * </p>
  * <p>
- *     The CharSequences passed to the ChipTokenizer methods may contain both chipped text
- *     and plain text so the tokenizer must have some method of distinguishing between the two (e.g. using a delimeter character.
- *     The {@link #terminateToken(CharSequence, Object)} method is where a chip can be formed and returned to replace the plain text.
- *     Whatever class the implementation deems to represent a chip, must implement the {@link Chip} interface.
+ * The CharSequences passed to the ChipTokenizer methods may contain both chipped text
+ * and plain text so the tokenizer must have some method of distinguishing between the two (e.g. using a delimeter character.
+ * The {@link #terminateToken(CharSequence, Object)} method is where a chip can be formed and returned to replace the plain text.
+ * Whatever class the implementation deems to represent a chip, must implement the {@link Chip} interface.
  * </p>
  *
  * @see SpanChipTokenizer
@@ -32,7 +32,7 @@ public interface ChipTokenizer {
      * Configures this ChipTokenizer to produce chips with the provided attributes. For each of these attributes, {@code -1} or {@code null} may be
      * passed to indicate that the attribute may be ignored.
      * <p>
-     *     This will also apply the provided {@link ChipConfiguration} to any existing chips in the provided text.
+     * This will also apply the provided {@link ChipConfiguration} to any existing chips in the provided text.
      * </p>
      *
      * @param text              the text in which to search for existing chips to apply the configuration to

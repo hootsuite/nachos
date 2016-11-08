@@ -50,12 +50,12 @@ public interface ChipTerminatorHandler {
      * Adds a character as a chip terminator. When the provided character is encountered in entered text, the nearby text will be chipified according
      * to the behavior provided here.
      * <p>
-     *     {@code behavior} Must be one of:
-     *     <ul>
-     *         <li>{@link #BEHAVIOR_CHIPIFY_ALL}</li>
-     *         <li>{@link #BEHAVIOR_CHIPIFY_CURRENT_TOKEN}</li>
-     *         <li>{@link #BEHAVIOR_CHIPIFY_TO_TERMINATOR}</li>
-     *     </ul>
+     * {@code behavior} Must be one of:
+     * <ul>
+     * <li>{@link #BEHAVIOR_CHIPIFY_ALL}</li>
+     * <li>{@link #BEHAVIOR_CHIPIFY_CURRENT_TOKEN}</li>
+     * <li>{@link #BEHAVIOR_CHIPIFY_TO_TERMINATOR}</li>
+     * </ul>
      * </p>
      *
      * @param character the character to mark as a chip terminator
@@ -66,17 +66,17 @@ public interface ChipTerminatorHandler {
     /**
      * Customizes the way paste events are handled.
      * <p>
-     *     If one of:
-     *     <ul>
-     *         <li>{@link #BEHAVIOR_CHIPIFY_ALL}</li>
-     *         <li>{@link #BEHAVIOR_CHIPIFY_CURRENT_TOKEN}</li>
-     *         <li>{@link #BEHAVIOR_CHIPIFY_TO_TERMINATOR}</li>
-     *     </ul>
-     *     is passed, all chip terminators will be handled with that behavior when a paste event occurs.
+     * If one of:
+     * <ul>
+     * <li>{@link #BEHAVIOR_CHIPIFY_ALL}</li>
+     * <li>{@link #BEHAVIOR_CHIPIFY_CURRENT_TOKEN}</li>
+     * <li>{@link #BEHAVIOR_CHIPIFY_TO_TERMINATOR}</li>
+     * </ul>
+     * is passed, all chip terminators will be handled with that behavior when a paste event occurs.
      * </p>
      * <p>
-     *     If {@link #PASTE_BEHAVIOR_USE_DEFAULT} is passed, whatever behavior is configured for a particular chip terminator
-     *     (through {@link #setChipTerminators(Map)} or {@link #addChipTerminator(char, int)} will be used for that chip terminator
+     * If {@link #PASTE_BEHAVIOR_USE_DEFAULT} is passed, whatever behavior is configured for a particular chip terminator
+     * (through {@link #setChipTerminators(Map)} or {@link #addChipTerminator(char, int)} will be used for that chip terminator
      * </p>
      *
      * @param pasteBehavior the behavior to use on a paste event
@@ -86,7 +86,7 @@ public interface ChipTerminatorHandler {
     /**
      * Parses the provided text looking for characters marked as chip terminators through {@link #addChipTerminator(char, int)} and {@link #setChipTerminators(Map)}.
      * <p>
-     *     The provided {@link Editable} will be modified if chip terminators are encountered.
+     * The provided {@link Editable} will be modified if chip terminators are encountered.
      * </p>
      *
      * @param tokenizer    the {@link ChipTokenizer} to use to identify and chipify tokens in the text
@@ -96,7 +96,7 @@ public interface ChipTerminatorHandler {
      * @param isPasteEvent true if this handling is for a paste event in which case the behavior set in {@link #setPasteBehavior(int)} will be used,
      *                     otherwise false
      * @return an non-negative integer indicating the index where the cursor (selection) should be placed once the handling is complete,
-     *         or a negative integer indicating that the cursor should not be moved.
+     * or a negative integer indicating that the cursor should not be moved.
      */
     int findAndHandleChipTerminators(@NonNull ChipTokenizer tokenizer, @NonNull Editable text, int start, int end, boolean isPasteEvent);
 }
