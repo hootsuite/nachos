@@ -664,8 +664,8 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 text.append(chippedText);
             }
         }
-        endUnwatchedTextChange();
         requestFocus();
+        endUnwatchedTextChange();
         setSelection(text.length());
     }
 
