@@ -685,8 +685,8 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 text.append(chippedText);
             }
         }
-        endUnwatchedTextChange();
         setSelection(text.length());
+        endUnwatchedTextChange();
     }
 
     public void setTextWithChips(@Nullable List<ChipInfo> chips) {
@@ -706,8 +706,8 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             }
         }
 
-        endUnwatchedTextChange();
         setSelection(text.length());
+        endUnwatchedTextChange();
     }
 
     @Override
