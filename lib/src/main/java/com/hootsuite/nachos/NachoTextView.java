@@ -23,9 +23,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListAdapter;
 import android.widget.MultiAutoCompleteTextView;
-import android.widget.AutoCompleteTextView;
 
 import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.chip.ChipInfo;
@@ -334,7 +334,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         return mChipVerticalSpacing;
     }
 
-    public void setChipVerticalSpacing(@DimenRes  int chipVerticalSpacingResId) {
+    public void setChipVerticalSpacing(@DimenRes int chipVerticalSpacingResId) {
         mChipVerticalSpacing = getContext().getResources().getDimensionPixelSize(chipVerticalSpacingResId);
         invalidateChips();
     }
@@ -576,11 +576,33 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         int end = getSelectionEnd();
         switch (id) {
             case android.R.id.cut:
-                setClipboardData(ClipData.newPlainText(null, getTextWithPlainTextSpans(start, end)));
+                try {
+                    setClipboardData(ClipData.newPlainText(null, getTextWithPlainTextSpans(start, end)));
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new StringIndexOutOfBoundsException(
+                            String.format(
+                                    "%s \nError cutting text index [%s, %s] for text [%s] and substring [%s]",
+                                    e.getMessage(),
+                                    start,
+                                    end,
+                                    getText().toString(),
+                                    getText().subSequence(start, end)));
+                }
                 getText().delete(getSelectionStart(), getSelectionEnd());
                 return true;
             case android.R.id.copy:
-                setClipboardData(ClipData.newPlainText(null, getTextWithPlainTextSpans(start, end)));
+                try {
+                    setClipboardData(ClipData.newPlainText(null, getTextWithPlainTextSpans(start, end)));
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new StringIndexOutOfBoundsException(
+                            String.format(
+                                    "%s \nError copying text index [%s, %s] for text [%s] and substring [%s]",
+                                    e.getMessage(),
+                                    start,
+                                    end,
+                                    getText().toString(),
+                                    getText().subSequence(start, end)));
+                }
                 return true;
             case android.R.id.paste:
                 mIsPasteEvent = true;
@@ -732,7 +754,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     /**
      * If there is a ChipTokenizer set, this method will do nothing. Instead we wait until the OnItemClickListener is triggered to actually perform
      * the text replacement so we can also associate the suggestion data with it.
-     *
+     * <p>
      * If there is no ChipTokenizer set, we call through to the super method.
      *
      * @param text the text to be chipified
@@ -780,7 +802,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     @Override
     public void afterTextChanged(Editable message) {
-        if(mIgnoreTextChangedEvents) {
+        if (mIgnoreTextChangedEvents) {
             return;
         }
 
@@ -982,6 +1004,8 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             return getTextWithPlainTextSpans(0, getText().length()).toString();
         } catch (ClassCastException ex) {  // Exception is thrown by cast in getText() on some LG devices
             return super.toString();
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new StringIndexOutOfBoundsException(String.format("%s \nError converting toString() [%s]", e.getMessage(), getText().toString()));
         }
     }
 
