@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -229,6 +230,12 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             invalidateChips();
             mMeasured = true;
         }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        invalidateChips();
     }
 
     /**
