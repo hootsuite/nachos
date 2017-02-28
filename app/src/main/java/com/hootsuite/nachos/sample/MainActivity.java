@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, SUGGESTIONS);
         nachoTextView.setAdapter(adapter);
         nachoTextView.setIllegalCharacters('\"');
+        List<String> chips = new ArrayList<>();
+        chips.add("Doritos");
+        chips.add("Lays");
+        nachoTextView.setText(chips);
         nachoTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
         nachoTextView.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR);
         nachoTextView.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
