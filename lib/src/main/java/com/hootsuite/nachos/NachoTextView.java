@@ -171,6 +171,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     // Measurement
     private boolean mMeasured;
 
+    // Layout
+    private boolean mLayoutComplete;
+
     public NachoTextView(Context context) {
         super(context);
         init(null);
@@ -228,6 +231,16 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             // Refresh the tokenizer for width changes
             invalidateChips();
             mMeasured = true;
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+
+        if (!mLayoutComplete) {
+            invalidateChips();
+            mLayoutComplete = true;
         }
     }
 
