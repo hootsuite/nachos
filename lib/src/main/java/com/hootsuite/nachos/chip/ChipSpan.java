@@ -139,6 +139,8 @@ public class ChipSpan extends ImageSpan implements Chip {
 
         mChipVerticalSpacing =chipSpan.mChipVerticalSpacing;
         mChipHeight = chipSpan.mChipHeight;
+
+        stateSet = chipSpan.stateSet;
     }
 
     @Override
