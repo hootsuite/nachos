@@ -727,6 +727,108 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         endUnwatchedTextChange();
     }
 
+    /**
+     *
+     * @param text to check if exists with Chip
+     * @return true if an existing chip contains text and null object
+     */
+    public boolean isAlreadyAdded(CharSequence text) {
+        return isAlreadyAdded(text, null);
+    }
+
+    /**
+     *
+     * @param text to check if exists with Chip
+     * @param object to check if exists with Chip
+     * @return true if an existing chip contains text and object
+     */
+    public boolean isAlreadyAdded(CharSequence text, Object object) {
+        List<Chip> chips = getAllChips();
+        for (Chip chip: chips) {
+            CharSequence existingText = chip.getText();
+            Object existingObject = chip.getData();
+            if (text.equals(existingText) &&
+                    (object == null && existingObject == null) || (object != null && object.equals(existingObject))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param text creates a chip with specified text
+     */
+    public void insertChip(CharSequence text) {
+        insertChip(text, null);
+    }
+
+    /**
+     *
+     * @param text creates a chip with specified text
+     * @param object creates a chip with specified object
+     */
+    public void insertChip(CharSequence text, Object object) {
+        if (mChipTokenizer != null) {
+            clearComposingText();
+
+            int end = getSelectionEnd();
+            Editable editable = getText();
+            int start = mChipTokenizer.findTokenStart(editable, end);
+            if (end != -1 && start != -1) {
+                if (end < start) {
+                    start = end;
+                }
+                editable.replace(start, end, mChipTokenizer.terminateToken(text, object));
+            } else {
+                CharSequence chippedText = mChipTokenizer.terminateToken(text, object);
+                getText().append(chippedText);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param text remove chip if exists with text and null object
+     */
+    public void removeChip(CharSequence text) {
+        removeChip(text, null);
+    }
+
+    /**
+     *
+     * @param text remove if chip exists with text AND
+     * @param object remove if chip exits with object
+     */
+    public void removeChip(CharSequence text, Object object) {
+        beginUnwatchedTextChange();
+
+        List<Chip> chips = getAllChips();
+        for (Chip chip: chips) {
+            CharSequence existingText = chip.getText();
+            Object existingObject = chip.getData();
+            if (text.equals(existingText) &&
+                    (object == null && existingObject == null) || (object != null && object.equals(existingObject))) {
+                mChipsToRemove.add(chip);
+            }
+        }
+
+        deletePendingChipsToRemove(getText());
+
+        endUnwatchedTextChange();
+    }
+
+    private void deletePendingChipsToRemove(Editable message) {
+        if (mChipTokenizer != null) {
+            Iterator<Chip> iterator = mChipsToRemove.iterator();
+            while (iterator.hasNext()) {
+                Chip chip = iterator.next();
+                iterator.remove();
+                mChipTokenizer.deleteChip(chip, message);
+            }
+        }
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         if (mChipTokenizer == null) {
@@ -823,14 +925,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         beginUnwatchedTextChange();
 
         // Handle backspace key
-        if (mChipTokenizer != null) {
-            Iterator<Chip> iterator = mChipsToRemove.iterator();
-            while (iterator.hasNext()) {
-                Chip chip = iterator.next();
-                iterator.remove();
-                mChipTokenizer.deleteChip(chip, message);
-            }
-        }
+        deletePendingChipsToRemove(message);
 
         // Handle an illegal or chip terminator character
         handleTextChanged(mTextChangedStart, mTextChangedEnd);
