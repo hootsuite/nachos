@@ -729,6 +729,26 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     /**
      *
+     * @return String of unchipped text that AutoCompleteTextView sees
+     */
+
+    public String getTextForSuggestion() {
+        if (getChipTokenizer() != null) {
+            int end = getSelectionEnd();
+            Editable editable = getText();
+            int start = getChipTokenizer().findTokenStart(editable, end);
+            if (start != -1 && end != -1) {
+                if (end < start) {
+                    start = end;
+                }
+                return editable.subSequence(start, end).toString();
+            }
+        }
+        return "";
+    }
+
+    /**
+     *
      * @param text to check if exists with Chip
      * @return true if an existing chip contains text and null object
      */
