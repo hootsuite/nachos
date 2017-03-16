@@ -149,7 +149,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     // Touch events
     @Nullable
     private OnChipClickListener mOnChipClickListener;
-    private GestureDetector gestureDetector;
+    private GestureDetector singleTapDetector;
     private boolean mEditChipOnTouchEnabled;
     private boolean mMoveChipToEndOnEdit;
     private boolean mChipifyUnterminatedTokensOnEdit;
@@ -216,7 +216,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         mDefaultPaddingTop = getPaddingTop();
         mDefaultPaddingBottom = getPaddingBottom();
 
-        gestureDetector = new GestureDetector(getContext(), new SingleTapListener());
+        singleTapDetector = new GestureDetector(getContext(), new SingleTapListener());
 
         setImeOptions(EditorInfo.IME_FLAG_NO_FULLSCREEN);
         addTextChangedListener(this);
@@ -513,11 +513,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         boolean wasHandled = false;
-        int action = event.getAction();
         clearChipStates();
         Chip touchedChip = findTouchedChip(event);
-        boolean singleTapUp = gestureDetector.onTouchEvent(event);
-        if (touchedChip != null && isFocused() && singleTapUp) {
+        if (touchedChip != null && isFocused() && singleTapDetector.onTouchEvent(event)) {
             touchedChip.setState(View.PRESSED_SELECTED_STATE_SET);
             if (onChipClicked(touchedChip)) {
                 wasHandled = true;
@@ -1066,12 +1064,11 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     private class SingleTapListener extends GestureDetector.SimpleOnGestureListener {
 
-      /**
-       *
-       * @param e the {@link MotionEvent} passed to the GestureDetector
-       * @return true if singleTapUp (click) was detected
-       */
-
+        /**
+         *
+         * @param e the {@link MotionEvent} passed to the GestureDetector
+         * @return true if singleTapUp (click) was detected
+         */
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             return true;
