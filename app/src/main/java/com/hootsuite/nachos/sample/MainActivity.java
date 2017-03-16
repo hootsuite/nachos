@@ -60,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         setupChipTextView(mNachoTextView);
         setupChipTextView(mNachoTextViewWithIcons);
 
+        List<String> testList = new ArrayList<>();
+        testList.add("testing");
+        testList.add("setText");
+        mNachoTextView.setText(testList);
+
         mNachoTextViewWithIcons.setChipTokenizer(new SpanChipTokenizer<>(this, new ChipSpanChipCreator() {
             @Override
             public ChipSpan createChip(@NonNull Context context, @NonNull CharSequence text, Object data) {

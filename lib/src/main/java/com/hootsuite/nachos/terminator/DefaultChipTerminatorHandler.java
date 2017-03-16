@@ -50,7 +50,7 @@ public class DefaultChipTerminatorHandler implements ChipTerminatorHandler {
             if (isChipTerminator(theChar)) {
                 int behavior = (isPasteEvent && mPasteBehavior != PASTE_BEHAVIOR_USE_DEFAULT) ? mPasteBehavior : mChipTerminators.get(theChar);
                 int newSelection = -1;
-                switch(behavior) {
+                switch (behavior) {
                     case BEHAVIOR_CHIPIFY_ALL:
                         selectionIndex = handleChipifyAll(textIterator, tokenizer);
                         break characterLoop;

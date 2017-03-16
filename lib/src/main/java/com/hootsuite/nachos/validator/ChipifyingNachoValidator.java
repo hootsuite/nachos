@@ -9,7 +9,8 @@ import com.hootsuite.nachos.tokenizer.ChipTokenizer;
 import java.util.List;
 
 /**
- * A {@link NachoValidator} that deems text to be invalid if it contains unterminated tokens and fixes the text by chipifying all the unterminated tokens.
+ * A {@link NachoValidator} that deems text to be invalid if it contains
+ * unterminated tokens and fixes the text by chipifying all the unterminated tokens.
  */
 public class ChipifyingNachoValidator implements NachoValidator {
 

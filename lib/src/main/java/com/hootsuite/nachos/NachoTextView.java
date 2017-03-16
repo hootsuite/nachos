@@ -690,7 +690,6 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         if (mChipTokenizer == null) {
             return;
         }
-
         beginUnwatchedTextChange();
 
         Editable text = getText();
@@ -702,7 +701,6 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 text.append(chippedText);
             }
         }
-
         setSelection(text.length());
 
         endUnwatchedTextChange();
@@ -712,7 +710,6 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         if (mChipTokenizer == null) {
             return;
         }
-
         beginUnwatchedTextChange();
 
         Editable text = getText();
@@ -724,9 +721,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 text.append(chippedText);
             }
         }
-
         setSelection(text.length());
-
         endUnwatchedTextChange();
     }
 
@@ -735,12 +730,10 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         if (mChipTokenizer == null) {
             return;
         }
-
         Adapter adapter = getAdapter();
         if (adapter == null) {
             return;
         }
-
         beginUnwatchedTextChange();
 
         Object data = getDataForSuggestion(adapter, position);
@@ -1061,11 +1054,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         void onChipClick(Chip chip, MotionEvent event);
     }
 
-
     private class SingleTapListener extends GestureDetector.SimpleOnGestureListener {
 
         /**
-         *
          * @param e the {@link MotionEvent} passed to the GestureDetector
          * @return true if singleTapUp (click) was detected
          */
