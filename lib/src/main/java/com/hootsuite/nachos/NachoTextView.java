@@ -49,78 +49,78 @@ import java.util.Map;
  * An editable TextView extending {@link MultiAutoCompleteTextView} that supports "chipifying" pieces of text and displaying suggestions for segments of the text.
  * <h1>The ChipTokenizer</h1>
  * <p>
- *     To customize chipifying with this class you can provide a custom {@link ChipTokenizer} by calling {@link #setChipTokenizer(ChipTokenizer)}.
- *     By default the {@link SpanChipTokenizer} is used.
+ * To customize chipifying with this class you can provide a custom {@link ChipTokenizer} by calling {@link #setChipTokenizer(ChipTokenizer)}.
+ * By default the {@link SpanChipTokenizer} is used.
  * </p>
  * <h1>Chip Terminators</h1>
  * <p>
- *     To set which characters trigger the creation of a chip, call {@link #addChipTerminator(char, int)} or {@link #setChipTerminators(Map)}.
- *     For example if tapping enter should cause all unchipped text to become chipped, call
- *     {@code chipSuggestionTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);}
+ * To set which characters trigger the creation of a chip, call {@link #addChipTerminator(char, int)} or {@link #setChipTerminators(Map)}.
+ * For example if tapping enter should cause all unchipped text to become chipped, call
+ * {@code chipSuggestionTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);}
  * </p>
  * <p>
- *     To completely customize how chips are created when text is entered in this text view you can provide a custom {@link ChipTerminatorHandler}
- *     through {@link #setChipTerminatorHandler(ChipTerminatorHandler)}
+ * To completely customize how chips are created when text is entered in this text view you can provide a custom {@link ChipTerminatorHandler}
+ * through {@link #setChipTerminatorHandler(ChipTerminatorHandler)}
  * </p>
  * <h1>Illegal Characters</h1>
  * <p>
- *     To prevent a character from being typed you can call {@link #setIllegalCharacters(char...)} and pass in all characters that should be considered
- *     illegal.
+ * To prevent a character from being typed you can call {@link #setIllegalCharacters(char...)} and pass in all characters that should be considered
+ * illegal.
  * </p>
  * <h1>Suggestions</h1>
  * <p>
- *     To provide suggestions you must provide an {@link android.widget.Adapter} by calling {@link #setAdapter(ListAdapter)}
+ * To provide suggestions you must provide an {@link android.widget.Adapter} by calling {@link #setAdapter(ListAdapter)}
  * </p>
  * <h1>UI Customization</h1>
  * <p>
- *     This view defines six custom attributes (all of which are optional):
- *     <ul>
- *         <li>chipSpacing - the horizontal space between chips</li>
- *         <li>chipBackground - the background color of the chip</li>
- *         <li>chipTextColor - the color of the chip text</li>
- *         <li>chipTextSize - the font size of the chip text</li>
- *         <li>chipHeight - the height of a single chip</li>
- *         <li>chipVerticalSpacing - the vertical space between chips on consecutive lines
- *             <ul>
- *                 <li>Note: chipVerticalSpacing is only used if a chipHeight is also set</li>
- *             </ul>
- *         </li>
- *     </ul>
- *     The values of these attributes will be passed to the ChipTokenizer through {@link ChipTokenizer#applyConfiguration(Editable, ChipConfiguration)}
+ * This view defines six custom attributes (all of which are optional):
+ * <ul>
+ * <li>chipSpacing - the horizontal space between chips</li>
+ * <li>chipBackground - the background color of the chip</li>
+ * <li>chipTextColor - the color of the chip text</li>
+ * <li>chipTextSize - the font size of the chip text</li>
+ * <li>chipHeight - the height of a single chip</li>
+ * <li>chipVerticalSpacing - the vertical space between chips on consecutive lines
+ * <ul>
+ * <li>Note: chipVerticalSpacing is only used if a chipHeight is also set</li>
+ * </ul>
+ * </li>
+ * </ul>
+ * The values of these attributes will be passed to the ChipTokenizer through {@link ChipTokenizer#applyConfiguration(Editable, ChipConfiguration)}
  * </p>
  * <h1>Validation</h1>
  * <p>
- *     This class can perform validation when certain events occur (such as losing focus). When the validation occurs is decided by
- *     {@link AutoCompleteTextView}. To perform validation, set a {@link NachoValidator}:
- *     <pre>
+ * This class can perform validation when certain events occur (such as losing focus). When the validation occurs is decided by
+ * {@link AutoCompleteTextView}. To perform validation, set a {@link NachoValidator}:
+ * <pre>
  *         nachoTextView.setNachoValidator(new ChipifyingNachoValidator());
  *     </pre>
- *     Note: The NachoValidator will be ignored if a ChipTokenizer is not set. To perform validation without a ChipTokenizer you can use
- *     {@link AutoCompleteTextView}'s built-in {@link AutoCompleteTextView.Validator Validator} through {@link #setValidator(Validator)}
+ * Note: The NachoValidator will be ignored if a ChipTokenizer is not set. To perform validation without a ChipTokenizer you can use
+ * {@link AutoCompleteTextView}'s built-in {@link AutoCompleteTextView.Validator Validator} through {@link #setValidator(Validator)}
  * </p>
  * <h1>Editing Chips</h1>
  * <p>
- *     This class also supports editing chips on touch. To enable this behavior call {@link #enableEditChipOnTouch(boolean, boolean)}. To disable this
- *     behavior you can call {@link #disableEditChipOnTouch()}
+ * This class also supports editing chips on touch. To enable this behavior call {@link #enableEditChipOnTouch(boolean, boolean)}. To disable this
+ * behavior you can call {@link #disableEditChipOnTouch()}
  * </p>
  * <h1>Example Setup:</h1>
  * <p>
- *     A standard setup for this class could look something like the following:
- *     <pre>
+ * A standard setup for this class could look something like the following:
+ * <pre>
  *         String[] suggestions = new String[]{"suggestion 1", "suggestion 2"};
-           ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_dropdown_item_1line, suggestions);
-           nachoTextView.setAdapter(adapter);
-           nachoTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
-           nachoTextView.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR);
-           nachoTextView.setIllegalCharacters('@');
-           nachoTextView.setNachoValidator(new ChipifyingNachoValidator());
-           nachoTextView.enableEditChipOnTouch(true, true);
-           nachoTextView.setOnChipClickListener(new NachoTextView.OnChipClickListener() {
-              {@literal @Override}
-               public void onChipClick(Chip chip, MotionEvent motionEvent) {
-                   // Handle click event
-               }
-           });
+ * ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;&gt;(this, android.R.layout.simple_dropdown_item_1line, suggestions);
+ * nachoTextView.setAdapter(adapter);
+ * nachoTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
+ * nachoTextView.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR);
+ * nachoTextView.setIllegalCharacters('@');
+ * nachoTextView.setNachoValidator(new ChipifyingNachoValidator());
+ * nachoTextView.enableEditChipOnTouch(true, true);
+ * nachoTextView.setOnChipClickListener(new NachoTextView.OnChipClickListener() {
+ * {@literal @Override}
+ * public void onChipClick(Chip chip, MotionEvent motionEvent) {
+ * // Handle click event
+ * }
+ * });
  *     </pre>
  * </p>
  *
@@ -226,7 +226,6 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         if (!mMeasured && getWidth() > 0) {
             // Refresh the tokenizer for width changes
             invalidateChips();
@@ -452,9 +451,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
      * Enables editing chips on touch events. When a touch event occurs, the touched chip will be put in editing mode. To later disable this behavior
      * call {@link #disableEditChipOnTouch()}.
      * <p>
-     *     Note: If an {@link OnChipClickListener} is set it's behavior will override the behavior described here if it's
-     *     {@link OnChipClickListener#onChipClick(Chip, MotionEvent)} method returns true. If that method returns false, the touched chip will be put
-     *     in editing mode as expected.
+     * Note: If an {@link OnChipClickListener} is set it's behavior will override the behavior described here if it's
+     * {@link OnChipClickListener#onChipClick(Chip, MotionEvent)} method returns true. If that method returns false, the touched chip will be put
+     * in editing mode as expected.
      * </p>
      *
      * @param moveChipToEnd             if true, the chip will also be moved to the end of the text when it is put in editing mode
@@ -699,9 +698,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 text.append(chippedText);
             }
         }
-
         setSelection(text.length());
-
         endUnwatchedTextChange();
     }
 
@@ -723,7 +720,6 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         }
 
         setSelection(text.length());
-
         endUnwatchedTextChange();
     }
 

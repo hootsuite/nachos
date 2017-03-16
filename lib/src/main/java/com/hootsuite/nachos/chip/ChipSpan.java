@@ -20,10 +20,10 @@ import com.hootsuite.nachos.R;
  * A Span that displays text and an optional icon inside of a material design chip. The chip's dimensions, colors etc. can be extensively customized
  * through the various setter methods available in this class.
  * <p>
- *     The basic structure of the chip is the following:
+ * The basic structure of the chip is the following:
  * <p>
  * For chips with the icon on right:
- *     <pre>
+ * <pre>
  *
  *                                  (chip vertical spacing / 2)
  *                  ----------------------------------------------------------
@@ -34,9 +34,9 @@ import com.hootsuite.nachos.R;
  *                                  (chip vertical spacing / 2)
  *
  *      </pre>
- *
+ * <p>
  * For chips with the icon on the left (see {@link #setShowIconOnLeft(boolean)}):
- *      <pre>
+ * <pre>
  *
  *                                  (chip vertical spacing / 2)
  *                  ----------------------------------------------------------
@@ -46,17 +46,18 @@ import com.hootsuite.nachos.R;
  *                  ----------------------------------------------------------
  *                                  (chip vertical spacing / 2)
  *     </pre>
- *
+ * <p>
  * </p>
  * </p>
  */
 public class ChipSpan extends ImageSpan implements Chip {
+
     private static final float SCALE_PERCENT_OF_CHIP_HEIGHT = 0.70f;
     private static final boolean ICON_ON_LEFT_DEFAULT = true;
 
     private int[] stateSet = new int[]{};
 
-    private String ellipsis;
+    private String mEllipsis;
 
     private ColorStateList mDefaultBackgroundColor;
     private ColorStateList mBackgroundColor;
@@ -98,7 +99,7 @@ public class ChipSpan extends ImageSpan implements Chip {
         mText = text;
         mTextToDraw = mText.toString();
 
-        ellipsis = context.getString(R.string.chip_ellipsis);
+        mEllipsis = context.getString(R.string.chip_ellipsis);
 
         mDefaultBackgroundColor = ContextCompat.getColorStateList(context, R.color.chip_material_background);
         mBackgroundColor = mDefaultBackgroundColor;
@@ -137,7 +138,7 @@ public class ChipSpan extends ImageSpan implements Chip {
 
         mShowIconOnLeft = chipSpan.mShowIconOnLeft;
 
-        mChipVerticalSpacing =chipSpan.mChipVerticalSpacing;
+        mChipVerticalSpacing = chipSpan.mChipVerticalSpacing;
         mChipHeight = chipSpan.mChipHeight;
 
         stateSet = chipSpan.stateSet;
@@ -288,14 +289,14 @@ public class ChipSpan extends ImageSpan implements Chip {
             if (mMaxAvailableWidth != -1) {
                 int maxAvailableWidthMinusMargins = mMaxAvailableWidth - mLeftMarginPx - mRightMarginPx;
                 if (actualWidth > maxAvailableWidthMinusMargins) {
-                    mTextToDraw = mText + ellipsis;
+                    mTextToDraw = mText + mEllipsis;
 
                     while ((calculateActualWidth(paint) > maxAvailableWidthMinusMargins) && mTextToDraw.length() > 0) {
-                        int lastCharacterIndex = mTextToDraw.length() - ellipsis.length() - 1;
+                        int lastCharacterIndex = mTextToDraw.length() - mEllipsis.length() - 1;
                         if (lastCharacterIndex < 0) {
                             break;
                         }
-                        mTextToDraw = mTextToDraw.substring(0, lastCharacterIndex) + ellipsis;
+                        mTextToDraw = mTextToDraw.substring(0, lastCharacterIndex) + mEllipsis;
                     }
 
                     // Avoid a negative width
@@ -342,7 +343,7 @@ public class ChipSpan extends ImageSpan implements Chip {
      * {@code mChipVerticalSpacing / 2} pixels of space above and below it
      *
      * @param paint the paint whose font metrics should be adjusted
-     * @param fm the font metrics object to populate through {@link Paint#getFontMetricsInt(Paint.FontMetricsInt)}
+     * @param fm    the font metrics object to populate through {@link Paint#getFontMetricsInt(Paint.FontMetricsInt)}
      */
     private void adjustFontMetrics(Paint paint, Paint.FontMetricsInt fm) {
         // Only actually adjust font metrics if we have a chip height set
@@ -417,7 +418,6 @@ public class ChipSpan extends ImageSpan implements Chip {
     private void drawText(Canvas canvas, float x, int top, int bottom, Paint paint, CharSequence text) {
         if (mTextSize != -1) {
             paint.setTextSize(mTextSize);
-
         }
         int height = calculateChipHeight(top, bottom);
         Paint.FontMetrics fm = paint.getFontMetrics();

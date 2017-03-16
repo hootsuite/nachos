@@ -8,8 +8,8 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.util.Pair;
 
-import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.ChipConfiguration;
+import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.chip.ChipCreator;
 import com.hootsuite.nachos.chip.ChipSpan;
 
@@ -22,17 +22,17 @@ import java.util.List;
 /**
  * A default implementation of {@link ChipTokenizer}.
  * <p>
- *     This implementation does the following:
- *     <ul>
- *         <li>Surrounds each token with a space and the Unit Separator ASCII control character (31) - See the diagram below
- *              <ul>
- *                  <li>The spaces are included so that android keyboards can distinguish the chips as different words and provide accurate
- *                  autocorrect suggestions</li>
- *              </ul>
- *         </li>
- *         <li>Replaces each token with a {@link ChipSpan} containing the same text, once the token terminates</li>
- *         <li>Uses the values passed to {@link #applyConfiguration(Editable, ChipConfiguration)} to configure any ChipSpans that get created</li>
- *     </ul>
+ * This implementation does the following:
+ * <ul>
+ * <li>Surrounds each token with a space and the Unit Separator ASCII control character (31) - See the diagram below
+ * <ul>
+ * <li>The spaces are included so that android keyboards can distinguish the chips as different words and provide accurate
+ * autocorrect suggestions</li>
+ * </ul>
+ * </li>
+ * <li>Replaces each token with a {@link ChipSpan} containing the same text, once the token terminates</li>
+ * <li>Uses the values passed to {@link #applyConfiguration(Editable, ChipConfiguration)} to configure any ChipSpans that get created</li>
+ * </ul>
  * </p>
  * Each terminated token will therefore look like the following (this is what will be returned from {@link #terminateToken(CharSequence, Object)}):
  * <pre>
@@ -46,9 +46,11 @@ import java.util.List;
  *  |   ----------------------------------------------------  |
  *  -----------------------------------------------------------
  * </pre>
+ *
  * @see ChipSpan
  */
 public class SpanChipTokenizer<C extends Chip> implements ChipTokenizer {
+
     /**
      * The character used to separate chips internally is the US (Unit Separator) ASCII control character.
      * This character is used because it's untypable so we have complete control over when chips are created.
@@ -216,7 +218,7 @@ public class SpanChipTokenizer<C extends Chip> implements ChipTokenizer {
     @Override
     public C[] findAllChips(int start, int end, Spanned text) {
         C[] spansArray = text.getSpans(start, end, mChipClass);
-        return (spansArray != null) ? spansArray : (C[])Array.newInstance(mChipClass, 0);
+        return (spansArray != null) ? spansArray : (C[]) Array.newInstance(mChipClass, 0);
     }
 
     @Override

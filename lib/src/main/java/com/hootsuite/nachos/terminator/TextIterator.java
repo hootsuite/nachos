@@ -3,6 +3,7 @@ package com.hootsuite.nachos.terminator;
 import android.text.Editable;
 
 public class TextIterator {
+
     private Editable mText;
     private int mStart;
     private int mEnd;
