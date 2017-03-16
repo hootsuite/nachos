@@ -4,10 +4,10 @@ buildscript {
         compileSdkVersion = 24
         targetSdkVersion = 24
 
-        buildToolsVersion = "24.0.1"
+        buildToolsVersion = "25.0.0"
         supportLibVersion = "24.2.0"
 
-        gradleVersion = "2.1.2"
+        gradleVersion = "2.3.0"
     }
     repositories {
         jcenter()
