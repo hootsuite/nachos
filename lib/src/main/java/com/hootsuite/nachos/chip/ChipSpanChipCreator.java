@@ -32,11 +32,23 @@ public class ChipSpanChipCreator implements ChipCreator<ChipSpan> {
             chip.setLeftMargin(chipSpacing / 2);
             chip.setRightMargin(chipSpacing / 2);
         }
-        if (chipBackground != null) chip.setBackgroundColor(chipBackground);
-        if (chipTextColor != -1) chip.setTextColor(chipTextColor);
-        if (chipTextSize != -1) chip.setTextSize(chipTextSize);
-        if (chipHeight != -1) chip.setChipHeight(chipHeight);
-        if (chipVerticalSpacing != -1) chip.setChipVerticalSpacing(chipVerticalSpacing);
-        if (maxAvailableWidth != -1) chip.setMaxAvailableWidth(maxAvailableWidth);
+        if (chipBackground != null) {
+            chip.setBackgroundColor(chipBackground);
+        }
+        if (chipTextColor != -1) {
+            chip.setTextColor(chipTextColor);
+        }
+        if (chipTextSize != -1) {
+            chip.setTextSize(chipTextSize);
+        }
+        if (chipHeight != -1) {
+            chip.setChipHeight(chipHeight);
+        }
+        if (chipVerticalSpacing != -1) {
+            chip.setChipVerticalSpacing(chipVerticalSpacing);
+        }
+        if (maxAvailableWidth != -1) {
+            chip.setMaxAvailableWidth(maxAvailableWidth);
+        }
     }
 }

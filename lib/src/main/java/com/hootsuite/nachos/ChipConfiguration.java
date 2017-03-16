@@ -24,7 +24,13 @@ public class ChipConfiguration {
      * @param chipVerticalSpacing the amount of vertical space (in pixels) to put between chips on consecutive lines
      * @param maxAvailableWidth   the maximum available with for a chip (the width of a full line of text in the text view)
      */
-    ChipConfiguration(int chipSpacing, ColorStateList chipBackground, int chipTextColor, int chipTextSize, int chipHeight, int chipVerticalSpacing, int maxAvailableWidth) {
+    ChipConfiguration(int chipSpacing,
+                      ColorStateList chipBackground,
+                      int chipTextColor,
+                      int chipTextSize,
+                      int chipHeight,
+                      int chipVerticalSpacing,
+                      int maxAvailableWidth) {
         mChipSpacing = chipSpacing;
         mChipBackground = chipBackground;
         mChipTextColor = chipTextColor;

@@ -8,8 +8,8 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.util.Pair;
 
-import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.ChipConfiguration;
+import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.chip.ChipCreator;
 import com.hootsuite.nachos.chip.ChipSpan;
 
@@ -46,9 +46,11 @@ import java.util.List;
  *  |   ----------------------------------------------------  |
  *  -----------------------------------------------------------
  * </pre>
+ *
  * @see ChipSpan
  */
 public class SpanChipTokenizer<C extends Chip> implements ChipTokenizer {
+
     /**
      * The character used to separate chips internally is the US (Unit Separator) ASCII control character.
      * This character is used because it's untypable so we have complete control over when chips are created.
@@ -102,7 +104,6 @@ public class SpanChipTokenizer<C extends Chip> implements ChipTokenizer {
         while (i > 0 && i < text.length() && Character.isWhitespace(text.charAt(i))) {
             i++;
         }
-
         return i;
     }
 
@@ -119,7 +120,6 @@ public class SpanChipTokenizer<C extends Chip> implements ChipTokenizer {
                 i++;
             }
         }
-
         return len;
     }
 
@@ -216,7 +216,7 @@ public class SpanChipTokenizer<C extends Chip> implements ChipTokenizer {
     @Override
     public C[] findAllChips(int start, int end, Spanned text) {
         C[] spansArray = text.getSpans(start, end, mChipClass);
-        return (spansArray != null) ? spansArray : (C[])Array.newInstance(mChipClass, 0);
+        return (spansArray != null) ? spansArray : (C[]) Array.newInstance(mChipClass, 0);
     }
 
     @Override

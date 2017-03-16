@@ -6,8 +6,8 @@ import android.text.Editable;
 import android.text.Spanned;
 import android.util.Pair;
 
-import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.ChipConfiguration;
+import com.hootsuite.nachos.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.List;
