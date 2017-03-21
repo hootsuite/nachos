@@ -19,9 +19,7 @@ import com.hootsuite.nachos.R;
 /**
  * A Span that displays text and an optional icon inside of a material design chip. The chip's dimensions, colors etc. can be extensively customized
  * through the various setter methods available in this class.
- * <p>
  *     The basic structure of the chip is the following:
- * <p>
  * For chips with the icon on right:
  * <pre>
  *
@@ -34,7 +32,6 @@ import com.hootsuite.nachos.R;
  *                                  (chip vertical spacing / 2)
  *
  *      </pre>
- * <p>
  * For chips with the icon on the left (see {@link #setShowIconOnLeft(boolean)}):
  * <pre>
  *
@@ -46,8 +43,6 @@ import com.hootsuite.nachos.R;
  *                  ----------------------------------------------------------
  *                                  (chip vertical spacing / 2)
  *     </pre>
- *
- * </p>
  */
 public class ChipSpan extends ImageSpan implements Chip {
 
