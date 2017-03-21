@@ -46,6 +46,7 @@ import com.hootsuite.nachos.R;
  *                  ----------------------------------------------------------
  *                                  (chip vertical spacing / 2)
  *     </pre>
+ *
  * </p>
  */
 public class ChipSpan extends ImageSpan implements Chip {
