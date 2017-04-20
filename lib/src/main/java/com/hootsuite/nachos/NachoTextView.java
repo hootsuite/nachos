@@ -17,6 +17,7 @@ import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Pair;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -524,7 +525,18 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 mOnChipClickListener.onChipClick(touchedChip, event);
             }
         }
-        return wasHandled || super.onTouchEvent(event);
+
+        // Getting NullPointerException inside Editor.updateFloatingToolbarVisibility (Editor.java:1520)
+        // primarily seen in Samsung Nougat devices.
+        boolean superOnTouch = false;
+        try {
+            superOnTouch = super.onTouchEvent(event);
+        } catch (NullPointerException e) {
+            Log.w("Nacho", String.format("Error during touch event of type [%d]", event.getAction()), e);
+            // can't handle or reproduce, but will monitor the error
+        }
+
+        return wasHandled || superOnTouch;
     }
 
     @Nullable
