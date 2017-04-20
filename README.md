@@ -57,7 +57,7 @@ Add this line to your module level build.gradle:
 
 ```groovy
 dependencies {
-    compile "com.hootsuite.android:nachos:1.1.0"
+    compile "com.hootsuite.android:nachos:1.1.1"
 }
 ```
 
