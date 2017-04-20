@@ -49,14 +49,12 @@ public interface ChipTerminatorHandler {
     /**
      * Adds a character as a chip terminator. When the provided character is encountered in entered text, the nearby text will be chipified according
      * to the behavior provided here.
-     * <p>
      *     {@code behavior} Must be one of:
      *     <ul>
      *         <li>{@link #BEHAVIOR_CHIPIFY_ALL}</li>
      *         <li>{@link #BEHAVIOR_CHIPIFY_CURRENT_TOKEN}</li>
      *         <li>{@link #BEHAVIOR_CHIPIFY_TO_TERMINATOR}</li>
      *     </ul>
-     * </p>
      *
      * @param character the character to mark as a chip terminator
      * @param behavior  the behavior describing how to respond to the chip terminator
@@ -65,7 +63,6 @@ public interface ChipTerminatorHandler {
 
     /**
      * Customizes the way paste events are handled.
-     * <p>
      *     If one of:
      *     <ul>
      *         <li>{@link #BEHAVIOR_CHIPIFY_ALL}</li>
@@ -73,11 +70,8 @@ public interface ChipTerminatorHandler {
      *         <li>{@link #BEHAVIOR_CHIPIFY_TO_TERMINATOR}</li>
      *     </ul>
      *     is passed, all chip terminators will be handled with that behavior when a paste event occurs.
-     * </p>
-     * <p>
      *     If {@link #PASTE_BEHAVIOR_USE_DEFAULT} is passed, whatever behavior is configured for a particular chip terminator
      *     (through {@link #setChipTerminators(Map)} or {@link #addChipTerminator(char, int)} will be used for that chip terminator
-     * </p>
      *
      * @param pasteBehavior the behavior to use on a paste event
      */
@@ -85,9 +79,7 @@ public interface ChipTerminatorHandler {
 
     /**
      * Parses the provided text looking for characters marked as chip terminators through {@link #addChipTerminator(char, int)} and {@link #setChipTerminators(Map)}.
-     * <p>
      *     The provided {@link Editable} will be modified if chip terminators are encountered.
-     * </p>
      *
      * @param tokenizer    the {@link ChipTokenizer} to use to identify and chipify tokens in the text
      * @param text         the text in which to search for chip terminators tokens to be chipped

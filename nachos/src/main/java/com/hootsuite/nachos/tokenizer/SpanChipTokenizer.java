@@ -21,7 +21,6 @@ import java.util.List;
 
 /**
  * A default implementation of {@link ChipTokenizer}.
- * <p>
  *     This implementation does the following:
  *     <ul>
  *         <li>Surrounds each token with a space and the Unit Separator ASCII control character (31) - See the diagram below
@@ -33,7 +32,6 @@ import java.util.List;
  *         <li>Replaces each token with a {@link ChipSpan} containing the same text, once the token terminates</li>
  *         <li>Uses the values passed to {@link #applyConfiguration(Editable, ChipConfiguration)} to configure any ChipSpans that get created</li>
  *     </ul>
- * </p>
  * Each terminated token will therefore look like the following (this is what will be returned from {@link #terminateToken(CharSequence, Object)}):
  * <pre>
  *  -----------------------------------------------------------
