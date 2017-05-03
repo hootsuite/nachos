@@ -241,6 +241,7 @@ for (Chip chip : nachoTextView.getAllChips()) {
 
 This section will often refer to the terms "token" and "chip".
 * Token means plain, unchipped text
+
 * Chip means chipped text
 
 #### <a name="TOC-AdvancedUsage-Validator"></a>Validating the Contents of the TextView ####
