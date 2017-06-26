@@ -823,7 +823,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         }
 
         // Handle an illegal or chip terminator character
-        handleTextChanged(mTextChangedStart, mTextChangedEnd);
+        if (message.length() >= mTextChangedEnd && message.length() >= mTextChangedStart) {
+            handleTextChanged(mTextChangedStart, mTextChangedEnd);
+        }
 
         endUnwatchedTextChange();
     }
