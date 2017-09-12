@@ -106,6 +106,12 @@ import java.util.Map;
  *                 // Handle click event
  *             }
  *         });
+ *         nachoTextView.setOnChipRemoveListener(new NachoTextView.OnChipRemoveListener() {
+ *            {@literal @Override}
+ *             public void onChipRemove(Chip chip) {
+ *                 // Handle remove event
+ *             }
+ *         });
  *     </pre>
  *
  * @see SpanChipTokenizer
@@ -147,6 +153,8 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     @Nullable
     private char[] mIllegalCharacters;
 
+    @Nullable
+    private OnChipRemoveListener mOnChipRemoveListener;
     private List<Chip> mChipsToRemove = new ArrayList<>();
     private boolean mIgnoreTextChangedEvents;
     private int mTextChangedStart;
@@ -362,6 +370,10 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     public void setOnChipClickListener(@Nullable OnChipClickListener onChipClickListener) {
         mOnChipClickListener = onChipClickListener;
+    }
+
+    public void setOnChipRemoveListener(@Nullable OnChipRemoveListener onChipRemoveListener){
+        mOnChipRemoveListener = onChipRemoveListener;
     }
 
     public void setChipTerminatorHandler(@Nullable ChipTerminatorHandler chipTerminatorHandler) {
@@ -819,6 +831,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 Chip chip = iterator.next();
                 iterator.remove();
                 mChipTokenizer.deleteChip(chip, message);
+                if (mOnChipRemoveListener != null) {
+                    mOnChipRemoveListener.onChipRemove(chip);
+                }
             }
         }
 
@@ -1048,6 +1063,16 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
          * @param event the {@link MotionEvent} that caused the touch
          */
         void onChipClick(Chip chip, MotionEvent event);
+    }
+
+    public interface OnChipRemoveListener {
+
+        /**
+         * Called when a chip in this TextView is removed
+         *
+         * @param chip  the {@link Chip} that was removed
+         */
+        void onChipRemove(Chip chip);
     }
 
     private class SingleTapListener extends GestureDetector.SimpleOnGestureListener {

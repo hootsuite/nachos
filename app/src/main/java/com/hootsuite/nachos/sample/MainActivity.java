@@ -93,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onChipClick: " + chip.getText());
             }
         });
+        nachoTextView.setOnChipRemoveListener(new NachoTextView.OnChipRemoveListener() {
+            @Override
+            public void onChipRemove(Chip chip) {
+                Log.d(TAG, "onChipRemoved: " + chip.getText());
+            }
+        });
     }
 
     @SuppressWarnings("unused")
