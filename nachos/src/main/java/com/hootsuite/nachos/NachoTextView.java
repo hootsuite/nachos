@@ -372,7 +372,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         mOnChipClickListener = onChipClickListener;
     }
 
-    public void setOnChipRemoveListener(@Nullable OnChipRemoveListener onChipRemoveListener){
+    public void setOnChipRemoveListener(@Nullable OnChipRemoveListener onChipRemoveListener) {
         mOnChipRemoveListener = onChipRemoveListener;
     }
 
