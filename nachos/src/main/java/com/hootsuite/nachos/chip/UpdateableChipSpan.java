@@ -14,7 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.style.ImageSpan;
-import android.util.Log;
 
 import com.hootsuite.nachos.R;
 
@@ -144,13 +143,6 @@ public class UpdateableChipSpan extends ImageSpan implements Chip {
         mData = data;
     }
 
-
-
-
-    public StateListDrawable getStateListDrawable() {
-        return mIcon;
-    }
-
     /**
      * Copy constructor to recreate a ChipSpan from an existing one
      *
@@ -177,6 +169,13 @@ public class UpdateableChipSpan extends ImageSpan implements Chip {
         mChipHeight = chipSpan.mChipHeight;
 
         mStateSet = chipSpan.mStateSet;
+    }
+
+    /**
+     * Returns the {@link StateListDrawable} for the ImageSpan
+     */
+    public StateListDrawable getStateListDrawable() {
+        return mIcon;
     }
 
     @Override
@@ -271,7 +270,7 @@ public class UpdateableChipSpan extends ImageSpan implements Chip {
 
     /**
      * Sets the icon background color. This is the color of the circle that gets drawn behind the icon passed to the
-     * {@link #ChipSpan(Context, CharSequence, StateListDrawable, Object)}  constructor}
+     * {@link #UpdateableChipSpan(Context, CharSequence, StateListDrawable, Object)}  constructor}
      *
      * @param iconBackgroundColor the icon background color to set (as a hexadecimal number in the form 0xAARRGGBB)
      */
@@ -440,12 +439,6 @@ public class UpdateableChipSpan extends ImageSpan implements Chip {
         }
     }
 
-    public void changeIcon(Drawable newIcon) {
-        mIcon.addState(new int[] {-android.R.attr.state_enabled}, newIcon);
-        mIcon.setState(new int[] {-android.R.attr.state_enabled});
-//        mIcon.invalidateSelf();
-//        getDrawable().invalidateSelf();
-    }
 
     private void drawBackground(Canvas canvas, float x, int top, int bottom, Paint paint) {
         int backgroundColor = mBackgroundColor.getColorForState(mStateSet, mBackgroundColor.getDefaultColor());
@@ -484,6 +477,17 @@ public class UpdateableChipSpan extends ImageSpan implements Chip {
     private void drawIcon(Canvas canvas, float x, int top, int bottom, Paint paint) {
         drawIconBackground(canvas, x, top, bottom, paint);
         drawIconBitmap(canvas, x, top, bottom, paint);
+    }
+
+    /**
+     * Adds a new state to the icon and then sets itself to the new state, once {@link com.hootsuite.nachos.NachoTextView#invalidateChips() }
+     * is called the new image state will be reflected in the view
+     *
+     * @param newIcon the drawable to be loaded, usually from URL or other image loading library
+     */
+    public void changeIcon(Drawable newIcon) {
+        mIcon.addState(new int[] {-android.R.attr.state_enabled}, newIcon);
+        mIcon.setState(new int[] {-android.R.attr.state_enabled});
     }
 
     private void drawIconBackground(Canvas canvas, float x, int top, int bottom, Paint paint) {
