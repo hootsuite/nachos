@@ -20,8 +20,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':nachos')
-    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
-    compile 'com.jakewharton:butterknife:7.0.1'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':nachos')
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+    implementation 'com.jakewharton:butterknife:7.0.1'
 }
