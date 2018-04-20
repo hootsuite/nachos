@@ -26,7 +26,7 @@ import com.hootsuite.nachos.validator.ChipifyingNachoValidator;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -35,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
     private static String TAG = "Nachos";
     private static String[] SUGGESTIONS = new String[]{"Nachos", "Chip", "Tortilla Chips", "Melted Cheese", "Salsa", "Guacamole", "Cheddar", "Mozzarella", "Mexico", "Jalapeno"};
 
-    @Bind(R.id.info_body)
+    @BindView(R.id.info_body)
     TextView mInfoBodyView;
-    @Bind(R.id.nacho_text_view)
+    @BindView(R.id.nacho_text_view)
     NachoTextView mNachoTextView;
-    @Bind(R.id.nacho_text_view_with_icons)
+    @BindView(R.id.nacho_text_view_with_icons)
     NachoTextView mNachoTextViewWithIcons;
 
     @SuppressWarnings("deprecation")
