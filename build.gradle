@@ -10,6 +10,7 @@ buildscript {
         gradleVersion = "2.3.0"
     }
     repositories {
+        google()
         jcenter()
     }
     dependencies {
@@ -21,6 +22,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
         mavenLocal()
     }
