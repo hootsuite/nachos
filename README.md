@@ -75,6 +75,7 @@ Include a `NachoTextView` in your xml layout as follows:
 NachoTextView offers several custom attributes that allow you to control the appearance of the chips it creates:
 * `chipSpacing` - The horizontal space between chips
 * `chipBackground` - The background color of the chip, can be a ColorStateList to change color when the chip is clicked
+* `chipCornerRadius` - The corner radius of the chip background
 * `chipTextColor` - The color of the chip text
 * `chipTextSize` - The font size of the chip text
 * `chipHeight` - The height of a single chip
