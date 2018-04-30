@@ -2,6 +2,7 @@ package com.hootsuite.nachos.chip;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 
 import com.hootsuite.nachos.ChipConfiguration;
@@ -35,7 +36,7 @@ public class ChipSpanChipCreator implements ChipCreator<ChipSpan> {
         if (chipBackground != null) {
             chip.setBackgroundColor(chipBackground);
         }
-        if (chipTextColor != -1) {
+        if (chipTextColor != Color.TRANSPARENT) {
             chip.setTextColor(chipTextColor);
         }
         if (chipTextSize != -1) {

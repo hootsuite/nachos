@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -123,7 +124,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     // UI Attributes
     private int mChipSpacing = -1;
     private ColorStateList mChipBackground = null;
-    private int mChipTextColor = -1;
+    private int mChipTextColor = Color.TRANSPARENT;
     private int mChipTextSize = -1;
     private int mChipHeight = -1;
     private int mChipVerticalSpacing = -1;
@@ -195,7 +196,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             try {
                 mChipSpacing = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipSpacing, -1);
                 mChipBackground = attributes.getColorStateList(R.styleable.NachoTextView_chipBackground);
-                mChipTextColor = attributes.getColor(R.styleable.NachoTextView_chipTextColor, -1);
+                mChipTextColor = attributes.getColor(R.styleable.NachoTextView_chipTextColor, Color.TRANSPARENT);
                 mChipTextSize = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipTextSize, -1);
                 mChipHeight = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipHeight, -1);
                 mChipVerticalSpacing = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipVerticalSpacing, -1);
