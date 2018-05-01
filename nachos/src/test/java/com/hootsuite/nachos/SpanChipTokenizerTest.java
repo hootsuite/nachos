@@ -745,7 +745,7 @@ public class SpanChipTokenizerTest extends TestCase {
     }
 
     private ChipConfiguration createTestChipConfiguration() {
-        return new ChipConfiguration(-1, null, -1, -1, -1, -1, -1);
+        return new ChipConfiguration(-1, null, -1, -1, -1, -1, -1, -1);
     }
 
     private SpannableStringBuilder createTestText(CharSequence[] evens, boolean chipifyEvens, CharSequence[] odds, boolean chipifyOdds) {

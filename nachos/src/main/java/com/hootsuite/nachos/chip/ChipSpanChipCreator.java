@@ -22,6 +22,7 @@ public class ChipSpanChipCreator implements ChipCreator<ChipSpan> {
     public void configureChip(@NonNull ChipSpan chip, @NonNull ChipConfiguration chipConfiguration) {
         int chipSpacing = chipConfiguration.getChipSpacing();
         ColorStateList chipBackground = chipConfiguration.getChipBackground();
+        int chipCornerRadius = chipConfiguration.getChipCornerRadius();
         int chipTextColor = chipConfiguration.getChipTextColor();
         int chipTextSize = chipConfiguration.getChipTextSize();
         int chipHeight = chipConfiguration.getChipHeight();
@@ -34,6 +35,9 @@ public class ChipSpanChipCreator implements ChipCreator<ChipSpan> {
         }
         if (chipBackground != null) {
             chip.setBackgroundColor(chipBackground);
+        }
+        if (chipCornerRadius != -1) {
+            chip.setCornerRadius(chipCornerRadius);
         }
         if (chipTextColor != -1) {
             chip.setTextColor(chipTextColor);

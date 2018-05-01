@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Dimension;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -56,6 +57,7 @@ public class ChipSpan extends ImageSpan implements Chip {
     private ColorStateList mDefaultBackgroundColor;
     private ColorStateList mBackgroundColor;
     private int mTextColor;
+    private int mCornerRadius = -1;
     private int mIconBackgroundColor;
 
     private int mTextSize = -1;
@@ -122,6 +124,7 @@ public class ChipSpan extends ImageSpan implements Chip {
         mDefaultBackgroundColor = chipSpan.mDefaultBackgroundColor;
         mTextColor = chipSpan.mTextColor;
         mIconBackgroundColor = chipSpan.mIconBackgroundColor;
+        mCornerRadius = chipSpan.mCornerRadius;
 
         mTextSize = chipSpan.mTextSize;
         mPaddingEdgePx = chipSpan.mPaddingEdgePx;
@@ -226,6 +229,15 @@ public class ChipSpan extends ImageSpan implements Chip {
      */
     public void setBackgroundColor(@Nullable ColorStateList backgroundColor) {
         mBackgroundColor = backgroundColor != null ? backgroundColor : mDefaultBackgroundColor;
+    }
+
+    /**
+     * Sets the chip background corner radius.
+     *
+     * @param cornerRadius The corner radius value, in pixels.
+     */
+    public void setCornerRadius(@Dimension int cornerRadius) {
+        mCornerRadius = cornerRadius;
     }
 
     /**
@@ -404,7 +416,7 @@ public class ChipSpan extends ImageSpan implements Chip {
         paint.setColor(backgroundColor);
         int height = calculateChipHeight(top, bottom);
         RectF rect = new RectF(x, top, x + mChipWidth, bottom);
-        int cornerRadius = height / 2;
+        int cornerRadius = (mCornerRadius != -1) ? mCornerRadius : height / 2;
         canvas.drawRoundRect(rect, cornerRadius, cornerRadius, paint);
         paint.setColor(mTextColor);
     }

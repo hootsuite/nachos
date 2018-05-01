@@ -3,6 +3,7 @@
     <declare-styleable name="NachoTextView">
         <attr name="chipSpacing" format="reference|dimension" />
         <attr name="chipBackground" format="reference|color"/>
+        <attr name="chipCornerRadius" format="reference|dimension"/>
         <attr name="chipTextColor" format="reference|color"/>
         <attr name="chipTextSize" format="reference|dimension"/>
         <attr name="chipHeight" format="reference|dimension"/>
