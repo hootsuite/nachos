@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
+import android.support.annotation.Dimension;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -69,6 +70,7 @@ import java.util.Map;
  *     <ul>
  *         <li>chipSpacing - the horizontal space between chips</li>
  *         <li>chipBackground - the background color of the chip</li>
+ *         <li>chipCornerRadius - the corner radius of the chip background</li>
  *         <li>chipTextColor - the color of the chip text</li>
  *         <li>chipTextSize - the font size of the chip text</li>
  *         <li>chipHeight - the height of a single chip</li>
@@ -124,6 +126,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     // UI Attributes
     private int mChipSpacing = -1;
     private ColorStateList mChipBackground = null;
+    private int mChipCornerRadius = -1;
     private int mChipTextColor = Color.TRANSPARENT;
     private int mChipTextSize = -1;
     private int mChipHeight = -1;
@@ -196,6 +199,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             try {
                 mChipSpacing = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipSpacing, -1);
                 mChipBackground = attributes.getColorStateList(R.styleable.NachoTextView_chipBackground);
+                mChipCornerRadius = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipCornerRadius, -1);
                 mChipTextColor = attributes.getColor(R.styleable.NachoTextView_chipTextColor, Color.TRANSPARENT);
                 mChipTextSize = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipTextSize, -1);
                 mChipHeight = attributes.getDimensionPixelSize(R.styleable.NachoTextView_chipHeight, -1);
@@ -307,6 +311,34 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         mChipBackground = chipBackground;
         invalidateChips();
     }
+
+    /**
+     * @return The chip background corner radius value, in pixels.
+     */
+    @Dimension
+    public int getChipCornerRadius() {
+        return mChipCornerRadius;
+    }
+
+    /**
+     * Sets the chip background corner radius.
+     *
+     * @param chipCornerRadiusResId The dimension resource with the corner radius value.
+     */
+    public void setChipCornerRadiusResource(@DimenRes int chipCornerRadiusResId) {
+        setChipCornerRadius(getContext().getResources().getDimensionPixelSize(chipCornerRadiusResId));
+    }
+
+    /**
+     * Sets the chip background corner radius.
+     *
+     * @param chipCornerRadius The corner radius value, in pixels.
+     */
+    public void setChipCornerRadius(@Dimension int chipCornerRadius) {
+        mChipCornerRadius = chipCornerRadius;
+        invalidateChips();
+    }
+
 
     public int getChipTextColor() {
         return mChipTextColor;
@@ -436,6 +468,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             ChipConfiguration configuration = new ChipConfiguration(
                     mChipSpacing,
                     mChipBackground,
+                    mChipCornerRadius,
                     mChipTextColor,
                     mChipTextSize,
                     mChipHeight,

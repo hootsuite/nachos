@@ -6,6 +6,7 @@ public class ChipConfiguration {
 
     private final int mChipSpacing;
     private final ColorStateList mChipBackground;
+    private final int mChipCornerRadius;
     private final int mChipTextColor;
     private final int mChipTextSize;
     private final int mChipHeight;
@@ -18,6 +19,7 @@ public class ChipConfiguration {
      *
      * @param chipSpacing         the amount of horizontal space (in pixels) to put between consecutive chips
      * @param chipBackground      the {@link ColorStateList} to set as the background of the chips
+     * @param chipCornerRadius    the corner radius of the chip background, in pixels
      * @param chipTextColor       the color to set as the text color of the chips
      * @param chipTextSize        the font size (in pixels) to use for the text of the chips
      * @param chipHeight          the height (in pixels) of each chip
@@ -26,6 +28,7 @@ public class ChipConfiguration {
      */
     ChipConfiguration(int chipSpacing,
                       ColorStateList chipBackground,
+                      int chipCornerRadius,
                       int chipTextColor,
                       int chipTextSize,
                       int chipHeight,
@@ -33,6 +36,7 @@ public class ChipConfiguration {
                       int maxAvailableWidth) {
         mChipSpacing = chipSpacing;
         mChipBackground = chipBackground;
+        mChipCornerRadius = chipCornerRadius;
         mChipTextColor = chipTextColor;
         mChipTextSize = chipTextSize;
         mChipHeight = chipHeight;
@@ -46,6 +50,10 @@ public class ChipConfiguration {
 
     public ColorStateList getChipBackground() {
         return mChipBackground;
+    }
+
+    public int getChipCornerRadius() {
+        return mChipCornerRadius;
     }
 
     public int getChipTextColor() {
