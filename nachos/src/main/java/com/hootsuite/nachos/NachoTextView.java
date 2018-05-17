@@ -783,6 +783,14 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         int end = getSelectionEnd();
         Editable editable = getText();
         int start = mChipTokenizer.findTokenStart(editable, end);
+
+        // guard against java.lang.StringIndexOutOfBoundsException
+        start = Math.min(Math.max(0, start), editable.length());
+        end = Math.min(Math.max(0, end), editable.length());
+        if (end < start) {
+            end = start;
+        }
+
         editable.replace(start, end, mChipTokenizer.terminateToken(text, data));
 
         endUnwatchedTextChange();
