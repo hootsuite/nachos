@@ -108,13 +108,13 @@ Don't forget to declare the app namespace on your root layout element:
 
 If you don't include any of these attributes, they will be set to default values that match the material spec.
 
-<img src="./images/General_example_2.png" height=256px"/>
+<img src="./images/General_example_2.png" height=256px/>
 
 #### <a name="TOC-BasicUsage-ChipSuggestions"></a>Showing Suggestions ####
 
 NachoTextView extends MultiAutoCompleteTextView which allows you to provide suggestions to the user as they are typing. The suggestions are generated based on only the text of the current token (not the contents of the entire text field).
 
-<img src="./images/Suggestions.gif" height=512px"/>
+<img src="./images/Suggestions.gif" height=512px/>
 
 Providing suggestions for the NachoTextView works the same way as it would for a MultiAutoCompleteTextView:
 
@@ -138,21 +138,21 @@ The characters that should cause the creation of a chip when typed are referred 
 `BEHAVIOR_CHIPIFY_ALL`:
 * When a chip terminator character is encountered in newly inserted text, all tokens in the whole text view will be chipified
 
-<img src="./images/Terminator_chipify_all.gif" height=512px"/>
+<img src="./images/Terminator_chipify_all.gif" height=512px/>
 
 In the example above, `'\n'` (the enter key) is a chip terminator associated with `BEHAVIOR_CHIPIFY_ALL`
 
 `BEHAVIOR_CHIPIFY_CURRENT_TOKEN`:
 * When a chip terminator character is encountered in newly inserted text, only the current token (that in which the chip terminator character was found) will be chipified. This token may extend beyond where the chip terminator character was located.
 
-<img src="./images/Terminator_chipify_current_token.gif" height=512px"/>
+<img src="./images/Terminator_chipify_current_token.gif" height=512px/>
 
 In the example above, `';'` (semicolon) is a chip terminator associated with `BEHAVIOR_CHIPIFY_CURRENT_TOKEN`
 
 `BEHAVIOR_CHIPIFY_TO_TERMINATOR`:
 * When a chip terminator character is encountered in newly inserted text, only the range of text from the previous chip to the chip terminator character will be chipified. This may not be an entire token.
 
-<img src="./images/Terminator_chipify_to_terminator.gif" height=512px"/>
+<img src="./images/Terminator_chipify_to_terminator.gif" height=512px/>
 
 In the example above, `' '` (space) is a chip terminator associated with `BEHAVIOR_CHIPIFY_TO_TERMINATOR`
 
@@ -180,11 +180,11 @@ nachoTextView.enableEditChipOnTouch(moveChipToEnd, chipifyUnterminatedTokens);
 
 If `moveChipToEnd` is true, the chip will be moved to the end of the text field when it is tapped. It will then be unchipified and the user will be able to edit it.
 
-<img src="./images/Editing_move_to_end.gif" height=192px"/>
+<img src="./images/Editing_move_to_end.gif" height=192px/>
 
 If `moveChipToEnd` is false, the chip will be unchipified in place allowing the user to edit it right where it is.
 
-<img src="./images/Editing_in_place.gif" height=192px"/>
+<img src="./images/Editing_in_place.gif" height=192px/>
 
 If `chipifyUnterminatedTokens` is true, all plain text (tokens) in the text field will be chipified before the chip to be edited is unchipified. Otherwise the chip to be edited will simply be unchipified without affecting the other text.
 
@@ -248,7 +248,7 @@ This section will often refer to the terms "token" and "chip".
 
 NachoTextView supports the use of a `NachoValidator`. When validation occurs is controlled by `AutoCompleteTextView`; however, it usually occurs in scenarios such as losing focus. Nachos includes an implementation of `NachoValidator`: `ChipifyingNachoValidator`. This implementation considers text to be invalid if it contains tokens and validates the text by chipifying all tokens.
 
-<img src="./images/Validation.gif" height=192px"/>
+<img src="./images/Validation.gif" height=192px/>
 
 To attach a `NachoValidator`, call `setNachoValidator(...)`:
 ```java
