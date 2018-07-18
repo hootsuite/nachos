@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupChipTextView(NachoTextView nachoTextView) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, SUGGESTIONS);
         nachoTextView.setAdapter(adapter);
-        nachoTextView.setIllegalCharacterClassifier(new IllegalCharacterIdentifier() {
+        nachoTextView.setIllegalCharacterIdentifier(new IllegalCharacterIdentifier() {
             @Override
             public boolean isCharacterIllegal(Character c) {
                 return !c.toString().matches("[a-z0-9 ]");

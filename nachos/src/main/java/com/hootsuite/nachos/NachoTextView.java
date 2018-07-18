@@ -62,7 +62,7 @@ import java.util.Map;
  *     To completely customize how chips are created when text is entered in this text view you can provide a custom {@link ChipTerminatorHandler}
  *     through {@link #setChipTerminatorHandler(ChipTerminatorHandler)}
  * <h1>Illegal Characters</h1>
- *     To prevent a character from being typed you can call {@link #setIllegalCharacterClassifier(IllegalCharacterIdentifier)}} to identify characters
+ *     To prevent a character from being typed you can call {@link #setIllegalCharacterIdentifier(IllegalCharacterIdentifier)}} to identify characters
  *     that should be considered illegal.
  * <h1>Suggestions</h1>
  *     To provide suggestions you must provide an {@link android.widget.Adapter} by calling {@link #setAdapter(ListAdapter)}
@@ -156,7 +156,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     @Nullable
     private NachoValidator mNachoValidator;
     @Nullable
-    private IllegalCharacterIdentifier mIllegalCharacterClassifier;
+    private IllegalCharacterIdentifier illegalCharacterIdentifier;
 
     @Nullable
     private OnChipRemoveListener mOnChipRemoveListener;
@@ -446,13 +446,15 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     }
 
     /**
-     * Sets the character classifier that will identify characters that should not show up in the field when typed (i.e. they will be deleted as soon as they are entered).
-     * If a character is listed as both a chip terminator character and an illegal character, it will be treated as an illegal character.
+     * Sets the {@link IllegalCharacterIdentifier} that will identify characters that should
+     * not show up in the field when typed (i.e. they will be deleted as soon as they are entered).
+     * If a character is listed as both a chip terminator character and an illegal character,
+     * it will be treated as an illegal character.
      *
-     * @param illegalCharacters the characters to be deemed illegal
+     * @param illegalCharacterIdentifier the identifier to use
      */
-    public void setIllegalCharacterClassifier(@Nullable IllegalCharacterIdentifier illegalCharacters) {
-        mIllegalCharacterClassifier = illegalCharacters;
+    public void setIllegalCharacterIdentifier(@Nullable IllegalCharacterIdentifier illegalCharacterIdentifier) {
+        this.illegalCharacterIdentifier = illegalCharacterIdentifier;
     }
 
     /**
@@ -926,8 +928,8 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     }
 
     private boolean isIllegalCharacter(char character) {
-        if (mIllegalCharacterClassifier != null) {
-            return mIllegalCharacterClassifier.isCharacterIllegal(character);
+        if (illegalCharacterIdentifier != null) {
+            return illegalCharacterIdentifier.isCharacterIllegal(character);
         }
         return false;
     }
