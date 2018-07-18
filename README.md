@@ -1,5 +1,7 @@
 # Nachos for Android #
 
+[![](https://jitpack.io/v/mgbckr/nachos-v2.svg)](https://jitpack.io/#mgbckr/nachos-v2)
+
 ## Table of Contents ##
 * [What is Nachos?](#TOC-WhatIsNachos)
 * [Key Features](#TOC-KeyFeatures)
