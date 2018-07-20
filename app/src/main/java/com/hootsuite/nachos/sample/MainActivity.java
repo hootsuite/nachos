@@ -22,6 +22,7 @@ import com.hootsuite.nachos.chip.ChipSpanChipCreator;
 import com.hootsuite.nachos.terminator.ChipTerminatorHandler;
 import com.hootsuite.nachos.tokenizer.SpanChipTokenizer;
 import com.hootsuite.nachos.validator.ChipifyingNachoValidator;
+import com.hootsuite.nachos.validator.IllegalCharacterIdentifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupChipTextView(NachoTextView nachoTextView) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, SUGGESTIONS);
         nachoTextView.setAdapter(adapter);
-        nachoTextView.setIllegalCharacters('\"');
+        nachoTextView.setIllegalCharacterIdentifier(new IllegalCharacterIdentifier() {
+            @Override
+            public boolean isCharacterIllegal(Character c) {
+                return !c.toString().matches("[a-z0-9 ]");
+            }
+        });
         nachoTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
         nachoTextView.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR);
         nachoTextView.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
@@ -97,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChipRemove(Chip chip) {
                 Log.d(TAG, "onChipRemoved: " + chip.getText());
+                mNachoTextView.setSelection(mNachoTextView.getText().length());
             }
         });
     }
