@@ -4,7 +4,7 @@ import android.content.res.ColorStateList;
 
 public class ChipConfiguration {
 
-    private final int mChipSpacing;
+    private final int mChipHorizontalSpacing;
     private final ColorStateList mChipBackground;
     private final int mChipCornerRadius;
     private final int mChipTextColor;
@@ -17,7 +17,7 @@ public class ChipConfiguration {
      * Creates a new ChipConfiguration. You can pass in {@code -1} or {@code null} for any of the parameters to indicate that parameter should be
      * ignored.
      *
-     * @param chipSpacing         the amount of horizontal space (in pixels) to put between consecutive chips
+     * @param chipHorizontalSpacing         the amount of horizontal space (in pixels) to put between consecutive chips
      * @param chipBackground      the {@link ColorStateList} to set as the background of the chips
      * @param chipCornerRadius    the corner radius of the chip background, in pixels
      * @param chipTextColor       the color to set as the text color of the chips
@@ -26,7 +26,7 @@ public class ChipConfiguration {
      * @param chipVerticalSpacing the amount of vertical space (in pixels) to put between chips on consecutive lines
      * @param maxAvailableWidth   the maximum available with for a chip (the width of a full line of text in the text view)
      */
-    ChipConfiguration(int chipSpacing,
+    ChipConfiguration(int chipHorizontalSpacing,
                       ColorStateList chipBackground,
                       int chipCornerRadius,
                       int chipTextColor,
@@ -34,7 +34,7 @@ public class ChipConfiguration {
                       int chipHeight,
                       int chipVerticalSpacing,
                       int maxAvailableWidth) {
-        mChipSpacing = chipSpacing;
+        mChipHorizontalSpacing = chipHorizontalSpacing;
         mChipBackground = chipBackground;
         mChipCornerRadius = chipCornerRadius;
         mChipTextColor = chipTextColor;
@@ -44,8 +44,8 @@ public class ChipConfiguration {
         mMaxAvailableWidth = maxAvailableWidth;
     }
 
-    public int getChipSpacing() {
-        return mChipSpacing;
+    public int getChipHorizontalSpacing() {
+        return mChipHorizontalSpacing;
     }
 
     public ColorStateList getChipBackground() {
