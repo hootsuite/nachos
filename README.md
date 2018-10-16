@@ -75,7 +75,7 @@ Include a `NachoTextView` in your xml layout as follows:
 
 #### <a name="TOC-BasicUsage-UICustomization"></a>Customizing the UI ####
 NachoTextView offers several custom attributes that allow you to control the appearance of the chips it creates:
-* `chipSpacing` - The horizontal space between chips
+* `chipHorizontalSpacing` - The horizontal space between chips
 * `chipBackground` - The background color of the chip, can be a ColorStateList to change color when the chip is clicked
 * `chipCornerRadius` - The corner radius of the chip background
 * `chipTextColor` - The color of the chip text
@@ -91,7 +91,7 @@ Use these attributes as follows:
     android:id="@+id/nacho_text_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:chipSpacing="2dp"
+    app:chipHorizontalSpacing="2dp"
     app:chipBackground="@color/chip_background"
     app:chipTextColor="@color/cheddar"
     app:chipTextSize="16dp"
