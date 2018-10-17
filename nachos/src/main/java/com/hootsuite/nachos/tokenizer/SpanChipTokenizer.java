@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.util.Log;
 import android.util.Pair;
 
 import com.hootsuite.nachos.ChipConfiguration;
