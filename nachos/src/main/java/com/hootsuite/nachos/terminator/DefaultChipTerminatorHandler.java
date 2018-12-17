@@ -4,12 +4,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 
+import com.hootsuite.nachos.NachoTextView;
+import com.hootsuite.nachos.chip.Chip;
 import com.hootsuite.nachos.tokenizer.ChipTokenizer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class DefaultChipTerminatorHandler implements ChipTerminatorHandler {
+
+    private NachoTextView.OnChipAddListener mOnChipAddListener;
 
     @Nullable
     private Map<Character, Integer> mChipTerminators;
@@ -53,12 +57,28 @@ public class DefaultChipTerminatorHandler implements ChipTerminatorHandler {
                 switch (behavior) {
                     case BEHAVIOR_CHIPIFY_ALL:
                         selectionIndex = handleChipifyAll(textIterator, tokenizer);
+                        if (mOnChipAddListener != null) {
+                            Chip[] chips = tokenizer.findAllChips(0, text.length(), text);
+                            if (chips.length > 0)
+                                mOnChipAddListener.onChipAdded(chips[chips.length - 1]);
+                        }
                         break characterLoop;
                     case BEHAVIOR_CHIPIFY_CURRENT_TOKEN:
                         newSelection = handleChipifyCurrentToken(textIterator, tokenizer);
+                        if (mOnChipAddListener != null) {
+                            Chip[] chips = tokenizer.findAllChips(0, text.length(), text);
+                            if (chips.length > 0)
+                                mOnChipAddListener.onChipAdded(chips[chips.length - 1]);
+                        }
+
                         break;
                     case BEHAVIOR_CHIPIFY_TO_TERMINATOR:
                         newSelection = handleChipifyToTerminator(textIterator, tokenizer);
+                        if (mOnChipAddListener != null) {
+                            Chip[] chips = tokenizer.findAllChips(0, text.length(), text);
+                            if (chips.length > 0)
+                                mOnChipAddListener.onChipAdded(chips[chips.length - 1]);
+                        }
                         break;
                 }
 
@@ -110,5 +130,10 @@ public class DefaultChipTerminatorHandler implements ChipTerminatorHandler {
 
     private boolean isChipTerminator(char character) {
         return mChipTerminators != null && mChipTerminators.keySet().contains(character);
+    }
+
+    @Override
+    public void setChipAddListener(NachoTextView.OnChipAddListener onChipAddListener) {
+        this.mOnChipAddListener = onChipAddListener;
     }
 }

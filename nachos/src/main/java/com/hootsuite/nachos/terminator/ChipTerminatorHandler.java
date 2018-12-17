@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 
+import com.hootsuite.nachos.NachoTextView;
 import com.hootsuite.nachos.tokenizer.ChipTokenizer;
 
 import java.util.Map;
@@ -91,4 +92,6 @@ public interface ChipTerminatorHandler {
      *         or a negative integer indicating that the cursor should not be moved.
      */
     int findAndHandleChipTerminators(@NonNull ChipTokenizer tokenizer, @NonNull Editable text, int start, int end, boolean isPasteEvent);
+
+    void setChipAddListener (NachoTextView.OnChipAddListener onChipAddListener);
 }

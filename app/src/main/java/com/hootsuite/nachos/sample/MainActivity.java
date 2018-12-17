@@ -106,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
                 mNachoTextView.setSelection(mNachoTextView.getText().length());
             }
         });
+        nachoTextView.setOnChipAddListener(new NachoTextView.OnChipAddListener() {
+            @Override
+            public void onChipAdded(Chip chip) {
+                Log.d(TAG, "onChipAdd " + chip.getText() );
+            }
+        });
     }
 
     @SuppressWarnings("unused")

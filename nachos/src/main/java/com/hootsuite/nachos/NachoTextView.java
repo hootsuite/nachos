@@ -150,6 +150,8 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     // Text entry
     @Nullable
+    private OnChipAddListener onChipAddListener;
+    @Nullable
     private ChipTokenizer mChipTokenizer;
     @Nullable
     private ChipTerminatorHandler mChipTerminatorHandler;
@@ -400,6 +402,13 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
             setTokenizer(null);
         }
         invalidateChips();
+    }
+
+    public void setOnChipAddListener(@Nullable OnChipAddListener onChipAddListener) {
+        this.onChipAddListener = onChipAddListener;
+        if (mChipTerminatorHandler != null) {
+            mChipTerminatorHandler.setChipAddListener(this.onChipAddListener);
+        }
     }
 
     public void setOnChipClickListener(@Nullable OnChipClickListener onChipClickListener) {
@@ -796,6 +805,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
         editable.replace(start, end, mChipTokenizer.terminateToken(text, data));
 
+        if (onChipAddListener != null){
+            onChipAddListener.onChipAdded(getAllChips().get(getAllChips().size()-1));
+        }
         endUnwatchedTextChange();
     }
 
@@ -1126,5 +1138,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         public boolean onSingleTapUp(MotionEvent e) {
             return true;
         }
+    }
+
+    public interface OnChipAddListener {
+        void onChipAdded(Chip chip);
     }
 }
