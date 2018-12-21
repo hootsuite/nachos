@@ -2,25 +2,25 @@ apply plugin: 'com.android.library'
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'nachos'
+    bintrayName = POM_ARTIFACT_ID
 
-    publishedGroupId = 'com.hootsuite.android'
-    libraryName = 'nachos'
-    artifact = 'nachos'
+    publishedGroupId = GROUP
+    libraryName = POM_ARTIFACT_ID
+    artifact = POM_ARTIFACT_ID
 
-    libraryDescription = 'A library for Android that provides a custom TextView allowing users to enter text and create material chips in the text field.'
+    libraryDescription = POM_DESCRIPTION
 
-    siteUrl = 'https://github.com/hootsuite/nachos'
-    gitUrl = 'https://github.com/hootsuite/nachos.git'
+    siteUrl = POM_SCM_URL
+    gitUrl = POM_SCM_CONNECTION
 
-    libraryVersion = '1.1.1'
+    libraryVersion = VERSION_NAME
 
-    developerId = 'hootsuite'
-    developerName = 'Hootsuite'
+    developerId = POM_DEVELOPER_ID
+    developerName = POM_DEVELOPER_NAME
     developerEmail = 'opensource@hootsuite.com'
 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    licenseName = POM_LICENCE_NAME
+    licenseUrl = POM_LICENCE_URL
     allLicenses = ["Apache-2.0"]
 }
 
@@ -45,8 +45,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:support-compat:$rootProject.ext.supportLibVersion"
-    testImplementation 'org.robolectric:robolectric:3.1'
-    testImplementation 'org.mockito:mockito-core:1.9.5'
+    testImplementation 'org.robolectric:robolectric:4.0.2'
+    testImplementation 'org.mockito:mockito-core:2.21.0'
     testImplementation('com.squareup.assertj:assertj-android:1.1.0') {
         exclude group: 'org.mockito', module: 'mockito-core'
     }
