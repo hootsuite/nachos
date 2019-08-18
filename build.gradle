@@ -1,11 +1,11 @@
 buildscript {
     ext {
         minSdkVersion = 15
-        compileSdkVersion = 27
-        targetSdkVersion = 27
+        compileSdkVersion = 28
+        targetSdkVersion = 28
 
         buildToolsVersion = "28.0.3"
-        supportLibVersion = "27.1.1"
+        supportLibVersion = "28.0.0"
 
         gradleVersion = "3.4.2"
     }
