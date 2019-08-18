@@ -10,14 +10,14 @@ import com.hootsuite.nachos.tokenizer.SpanChipTokenizer;
 
 import junit.framework.TestCase;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.AdditionalMatchers;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.robolectric.annotation.Config;
+import org.robolectric.RobolectricTestRunner;
 
 import static com.hootsuite.nachos.matchers.CharSequenceMatchers.toStringEq;
 import static com.hootsuite.nachos.matchers.IntegerMatchers.between;
@@ -33,8 +33,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(CustomRobolectricRunner.class)
-@Config(constants = BuildConfig.class)
+@RunWith(RobolectricTestRunner.class)
 public class DefaultChipTerminatorHandlerTest extends TestCase {
 
     private static final char CHIPIFY_ALL_CHAR = '\n';
@@ -245,8 +244,8 @@ public class DefaultChipTerminatorHandlerTest extends TestCase {
         int firstTokenStart = 0;
         int firstTokenEnd = SINGLE_TOKEN.length();
 
-        when(chipTokenizer.findTokenStart(any(CharSequence.class), intThat(Matchers.lessThanOrEqualTo(firstTokenEnd)))).thenReturn(firstTokenStart);
-        when(chipTokenizer.findTokenEnd(any(CharSequence.class), intThat(Matchers.lessThanOrEqualTo(firstTokenEnd)))).thenReturn(firstTokenEnd);
+        when(chipTokenizer.findTokenStart(any(CharSequence.class), AdditionalMatchers.leq(firstTokenEnd))).thenReturn(firstTokenStart);
+        when(chipTokenizer.findTokenEnd(any(CharSequence.class), AdditionalMatchers.leq(firstTokenEnd))).thenReturn(firstTokenEnd);
         when(chipTokenizer.terminateToken(argThat(toStringEq(SINGLE_TOKEN)), any())).thenReturn(SINGLE_TOKEN_CHIPIFIED);
 
         // run
@@ -332,10 +331,10 @@ public class DefaultChipTerminatorHandlerTest extends TestCase {
         int token3End = token3Start + SINGLE_TOKEN_3.length();
         int afterToken3 = token3Start + SINGLE_TOKEN_3_CHIPIFIED.length();
 
-        when(chipTokenizer.findTokenStart(any(CharSequence.class), intThat(Matchers.lessThanOrEqualTo(token1End)))).thenReturn(token1Start);
+        when(chipTokenizer.findTokenStart(any(CharSequence.class), AdditionalMatchers.leq(token1End))).thenReturn(token1Start);
         when(chipTokenizer.findTokenStart(any(CharSequence.class), intThat(between(token2Start, token2End)))).thenReturn(token2Start);
         when(chipTokenizer.findTokenStart(any(CharSequence.class), intThat(between(token3Start, token3End)))).thenReturn(token3Start);
-        when(chipTokenizer.findTokenStart(any(CharSequence.class), intThat(Matchers.greaterThanOrEqualTo(afterToken3)))).thenReturn(afterToken3);
+        when(chipTokenizer.findTokenStart(any(CharSequence.class), AdditionalMatchers.geq(afterToken3))).thenReturn(afterToken3);
         doAnswer(new Answer<CharSequence>() {
 
             @Override

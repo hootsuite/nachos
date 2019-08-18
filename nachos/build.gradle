@@ -40,13 +40,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:support-compat:$rootProject.ext.supportLibVersion"
-    testImplementation 'org.robolectric:robolectric:4.0.2'
-    testImplementation 'org.mockito:mockito-core:2.21.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.robolectric:robolectric:4.2.1'
+    testImplementation 'org.mockito:mockito-core:2.28.2'
     testImplementation('com.squareup.assertj:assertj-android:1.1.0') {
         exclude group: 'org.mockito', module: 'mockito-core'
     }
