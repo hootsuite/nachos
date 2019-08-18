@@ -26,7 +26,6 @@ ext {
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -49,7 +48,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:support-compat:$rootProject.ext.supportLibVersion"
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.core:core:1.0.2'
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.robolectric:robolectric:4.2.1'
     testImplementation 'org.mockito:mockito-core:2.28.2'

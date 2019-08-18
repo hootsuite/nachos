@@ -42,10 +42,10 @@ public class SpanChipTokenizerTest extends TestCase {
     private static final CharSequence SINGLE_TOKEN_2 = "test2";
     private static final CharSequence SINGLE_TOKEN_3 = "test3";
     private static final CharSequence WHITESPACE = "   ";
-    private static final CharSequence[] TEST_TOKENS_ALL_VALID = new CharSequence[]{SINGLE_CHARACTER, "token1", "token2", "token3", "token with spaces", SINGLE_CHARACTER};
-    private static final CharSequence[] TEST_CHIP_VALUES_ALL_VALID = new CharSequence[]{SINGLE_CHARACTER_2, "chip1", "chip2", "chip3", "chip with spaces", SINGLE_CHARACTER_2};
-    private static final CharSequence[] TEST_TOKENS_ONE_WHITESPACE = new CharSequence[]{SINGLE_CHARACTER, "token1", "token2", "token3", WHITESPACE, "token with spaces", SINGLE_CHARACTER};
-    private static final CharSequence[] TEST_CHIP_VALUES_ONE_WHITESPACE = new CharSequence[]{SINGLE_CHARACTER_2, "chip1", "chip2", "chip3", WHITESPACE, "chip with spaces", SINGLE_CHARACTER_2};
+    private static final CharSequence[] TEST_TOKENS_ALL_VALID = new CharSequence[] {SINGLE_CHARACTER, "token1", "token2", "token3", "token with spaces", SINGLE_CHARACTER};
+    private static final CharSequence[] TEST_CHIP_VALUES_ALL_VALID = new CharSequence[] {SINGLE_CHARACTER_2, "chip1", "chip2", "chip3", "chip with spaces", SINGLE_CHARACTER_2};
+    private static final CharSequence[] TEST_TOKENS_ONE_WHITESPACE = new CharSequence[] {SINGLE_CHARACTER, "token1", "token2", "token3", WHITESPACE, "token with spaces", SINGLE_CHARACTER};
+    private static final CharSequence[] TEST_CHIP_VALUES_ONE_WHITESPACE = new CharSequence[] {SINGLE_CHARACTER_2, "chip1", "chip2", "chip3", WHITESPACE, "chip with spaces", SINGLE_CHARACTER_2};
 
     private ChipCreator<Chip> mMockChipCreator;
 
@@ -56,12 +56,12 @@ public class SpanChipTokenizerTest extends TestCase {
     @SuppressWarnings("unchecked")
     @Before
     public void setup() {
-        mMockChipCreator = (ChipCreator<Chip>) mock(ChipCreator.class);
+        mMockChipCreator = (ChipCreator<Chip>)mock(ChipCreator.class);
         doAnswer(new Answer<Chip>() {
             @Override
             public Chip answer(InvocationOnMock invocation) throws Throwable {
                 Chip mockChip = mock(Chip.class);
-                CharSequence text = (String) invocation.getArguments()[1];
+                CharSequence text = (String)invocation.getArguments()[1];
                 when(mockChip.getText()).thenReturn(text);
                 when(mockChip.getData()).thenReturn(invocation.getArguments()[2]);
                 return mockChip;
@@ -71,8 +71,8 @@ public class SpanChipTokenizerTest extends TestCase {
             @Override
             public Chip answer(InvocationOnMock invocation) throws Throwable {
                 Chip mockChip = mock(Chip.class);
-                CharSequence text = ((Chip) invocation.getArguments()[1]).getText();
-                Object data = ((Chip) invocation.getArguments()[1]).getData();
+                CharSequence text = ((Chip)invocation.getArguments()[1]).getText();
+                Object data = ((Chip)invocation.getArguments()[1]).getData();
                 when(mockChip.getText()).thenReturn(text);
                 when(mockChip.getData()).thenReturn(data);
                 return mockChip;
