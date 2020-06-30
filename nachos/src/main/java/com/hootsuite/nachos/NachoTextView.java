@@ -980,6 +980,14 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     private CharSequence getTextWithPlainTextSpans(int start, int end) {
         Editable editable = getText();
+
+        // Fix invalid string indices
+        start = Math.min(Math.max(0, start), editable.length());
+        end = Math.min(Math.max(0, end), editable.length());
+        if (end < start) {
+            end = start;
+        }
+
         String selectedText = editable.subSequence(start, end).toString();
 
         if (mChipTokenizer != null) {
