@@ -1,6 +1,6 @@
 package com.hootsuite.nachos.validator;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.hootsuite.nachos.tokenizer.ChipTokenizer;
 

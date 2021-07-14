@@ -2,10 +2,6 @@ package com.hootsuite.nachos.sample;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -13,6 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.hootsuite.nachos.ChipConfiguration;
 import com.hootsuite.nachos.NachoTextView;
@@ -27,20 +28,12 @@ import com.hootsuite.nachos.validator.IllegalCharacterIdentifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-
 public class MainActivity extends AppCompatActivity {
 
     private static String TAG = "Nachos";
     private static String[] SUGGESTIONS = new String[]{"Nachos", "Chip", "Tortilla Chips", "Melted Cheese", "Salsa", "Guacamole", "Cheddar", "Mozzarella", "Mexico", "Jalapeno"};
 
-    @BindView(R.id.info_body)
-    TextView mInfoBodyView;
-    @BindView(R.id.nacho_text_view)
     NachoTextView mNachoTextView;
-    @BindView(R.id.nacho_text_view_with_icons)
     NachoTextView mNachoTextViewWithIcons;
 
     @SuppressWarnings("deprecation")
@@ -48,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        mNachoTextView = findViewById(R.id.nacho_text_view);
+        mNachoTextViewWithIcons = findViewById(R.id.nacho_text_view_with_icons);
 
         Spanned infoText;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -56,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             infoText = Html.fromHtml(getString(R.string.info_text_body));
         }
-        mInfoBodyView.setText(infoText);
+        ((TextView)findViewById(R.id.info_body)).setText(infoText);
 
-        setupChipTextView(mNachoTextView);
+        setupChipTextView(findViewById(R.id.nacho_text_view));
         setupChipTextView(mNachoTextViewWithIcons);
 
         List<String> testList = new ArrayList<>();
@@ -109,21 +103,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @SuppressWarnings("unused")
-    @OnClick(R.id.list_chip_values)
     public void listChipValues(View view) {
         List<String> chipValues = mNachoTextView.getChipValues();
         alertStringList("Chip Values", chipValues);
     }
 
     @SuppressWarnings("unused")
-    @OnClick(R.id.list_chip_and_token_values)
     public void listChipAndTokenValues(View view) {
         List<String> chipAndTokenValues = mNachoTextView.getChipAndTokenValues();
         alertStringList("Chip and Token Values", chipAndTokenValues);
     }
 
     @SuppressWarnings("unused")
-    @OnClick(R.id.to_string)
     public void toastToString(View view) {
         List<String> strings = new ArrayList<>();
         strings.add(mNachoTextView.toString());

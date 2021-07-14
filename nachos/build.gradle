@@ -44,15 +44,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:support-compat:$rootProject.ext.supportLibVersion"
-    testImplementation 'org.robolectric:robolectric:4.0.2'
-    testImplementation 'org.mockito:mockito-core:2.21.0'
-    testImplementation('com.squareup.assertj:assertj-android:1.1.0') {
-        exclude group: 'org.mockito', module: 'mockito-core'
-    }
+    implementation "androidx.annotation:annotation:1.2.0"
+    implementation "androidx.core:core:1.6.0"
 }
 
-apply from: 'maven_push.gradle'
-
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+//apply from: 'maven_push.gradle'
+//
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

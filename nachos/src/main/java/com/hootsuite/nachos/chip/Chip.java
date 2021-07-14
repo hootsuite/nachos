@@ -1,6 +1,6 @@
 package com.hootsuite.nachos.chip;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public interface Chip {
 

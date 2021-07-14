@@ -1,10 +1,10 @@
 package com.hootsuite.nachos.tokenizer;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.Spanned;
 import android.util.Pair;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.hootsuite.nachos.ChipConfiguration;
 import com.hootsuite.nachos.chip.Chip;
