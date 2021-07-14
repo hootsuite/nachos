@@ -1,29 +1,5 @@
 apply plugin: 'com.android.library'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = POM_ARTIFACT_ID
-
-    publishedGroupId = GROUP
-    libraryName = POM_ARTIFACT_ID
-    artifact = POM_ARTIFACT_ID
-
-    libraryDescription = POM_DESCRIPTION
-
-    siteUrl = POM_SCM_URL
-    gitUrl = POM_SCM_CONNECTION
-
-    libraryVersion = VERSION_NAME
-
-    developerId = POM_DEVELOPER_ID
-    developerName = POM_DEVELOPER_NAME
-    developerEmail = 'opensource@hootsuite.com'
-
-    licenseName = POM_LICENCE_NAME
-    licenseUrl = POM_LICENCE_URL
-    allLicenses = ["Apache-2.0"]
-}
-
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -47,8 +23,3 @@ dependencies {
     implementation "androidx.annotation:annotation:1.2.0"
     implementation "androidx.core:core:1.6.0"
 }
-
-//apply from: 'maven_push.gradle'
-//
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-//apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
