@@ -1,6 +1,6 @@
-# Nachos for Android #
+# Nachos for Android - AndroidX Support #
+[![](https://jitpack.io/v/fatihsokmen/nachos.svg)](https://jitpack.io/#fatihsokmen/nachos)
 
-[![](https://jitpack.io/v/mgbckr/nachos-v2.svg)](https://jitpack.io/#mgbckr/nachos-v2)
 
 ## Table of Contents ##
 * [What is Nachos?](#TOC-WhatIsNachos)
