@@ -6,8 +6,8 @@ import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,14 +35,25 @@ public class MainActivity extends AppCompatActivity {
 
     NachoTextView mNachoTextView;
     NachoTextView mNachoTextViewWithIcons;
+    Button mListChipValuesButton;
+    Button mListChipAndTokenValuesButton;
+    Button mToastStringsButton;
 
-    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mNachoTextView = findViewById(R.id.nacho_text_view);
         mNachoTextViewWithIcons = findViewById(R.id.nacho_text_view_with_icons);
+
+        mListChipValuesButton = ((Button)findViewById(R.id.list_chip_values));
+        mListChipValuesButton.setOnClickListener(v -> listChipValues());
+
+        mListChipAndTokenValuesButton = ((Button)findViewById(R.id.list_chip_and_token_values));
+        mListChipAndTokenValuesButton.setOnClickListener(v -> listChipAndTokenValues());
+
+        mToastStringsButton = ((Button)findViewById(R.id.to_string));
+        mToastStringsButton.setOnClickListener(v -> toastToString());
 
         Spanned infoText;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -102,20 +113,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @SuppressWarnings("unused")
-    public void listChipValues(View view) {
+    public void listChipValues() {
         List<String> chipValues = mNachoTextView.getChipValues();
         alertStringList("Chip Values", chipValues);
     }
 
-    @SuppressWarnings("unused")
-    public void listChipAndTokenValues(View view) {
+    public void listChipAndTokenValues() {
         List<String> chipAndTokenValues = mNachoTextView.getChipAndTokenValues();
         alertStringList("Chip and Token Values", chipAndTokenValues);
     }
 
-    @SuppressWarnings("unused")
-    public void toastToString(View view) {
+    public void toastToString() {
         List<String> strings = new ArrayList<>();
         strings.add(mNachoTextView.toString());
         alertStringList("toString()", strings);
