@@ -51,7 +51,7 @@ Add this line to your project level build.gradle:
 ```groovy
 buildscript {
   repositories {
-    jcenter()
+    maven { url 'https://jitpack.io' }
   }
 ```
 
@@ -59,7 +59,7 @@ Add this line to your module level build.gradle:
 
 ```groovy
 dependencies {
-    implementation "com.hootsuite.android:nachos:1.1.1"
+    implementation "com.github.fatihsokmen:nachos:2.0.0"
 }
 ```
 
