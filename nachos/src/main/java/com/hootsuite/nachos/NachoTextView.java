@@ -39,6 +39,7 @@ import com.hootsuite.nachos.terminator.ChipTerminatorHandler;
 import com.hootsuite.nachos.terminator.DefaultChipTerminatorHandler;
 import com.hootsuite.nachos.tokenizer.ChipTokenizer;
 import com.hootsuite.nachos.tokenizer.SpanChipTokenizer;
+import com.hootsuite.nachos.tokenizer.UniqueSpanChipTokenizer;
 import com.hootsuite.nachos.validator.ChipifyingNachoValidator;
 import com.hootsuite.nachos.validator.IllegalCharacterIdentifier;
 import com.hootsuite.nachos.validator.NachoValidator;
@@ -46,9 +47,11 @@ import com.hootsuite.nachos.validator.NachoValidator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * An editable TextView extending {@link MultiAutoCompleteTextView} that supports "chipifying" pieces of text and displaying suggestions for segments of the text.
@@ -165,6 +168,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     private int mTextChangedStart;
     private int mTextChangedEnd;
     private boolean mIsPasteEvent;
+    private Set<String> tokens = new HashSet<>();
 
     // Measurement
     private boolean mMeasured;
@@ -217,7 +221,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
         setImeOptions(EditorInfo.IME_FLAG_NO_FULLSCREEN);
         addTextChangedListener(this);
-        setChipTokenizer(new SpanChipTokenizer<>(context, new ChipSpanChipCreator(), ChipSpan.class));
+        setChipTokenizer(new UniqueSpanChipTokenizer(context, new ChipSpanChipCreator(), ChipSpan.class, tokens ));
         setChipTerminatorHandler(new DefaultChipTerminatorHandler());
         setOnItemClickListener(this);
 
@@ -636,7 +640,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         switch (id) {
             case android.R.id.cut:
                 try {
-                    setClipboardData(ClipData.newPlainText(null, getTextWithPlainTextSpans(start, end)));
+                    String text = getTextWithPlainTextSpans(start, end).toString();
+                    tokens.removeAll(Arrays.asList(text.split(",")));
+                    setClipboardData(ClipData.newPlainText(null, text));
                 } catch (StringIndexOutOfBoundsException e) {
                     throw new StringIndexOutOfBoundsException(
                             String.format(
@@ -850,6 +856,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                     if ((spanStart < end) && (spanEnd > start)) {
                         // Add to remove list
                         mChipsToRemove.add(chip);
+                        tokens.remove(chip.toString());
                     }
                 }
             }
@@ -989,7 +996,7 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
                 String chipText = chip.getText().toString();
                 int chipStart = mChipTokenizer.findChipStart(chip, editable) - start;
                 int chipEnd = mChipTokenizer.findChipEnd(chip, editable) - start;
-                selectedText = selectedText.substring(0, chipStart) + chipText + selectedText.substring(chipEnd, selectedText.length());
+                selectedText = selectedText.substring(0, chipStart) + chipText + "," + selectedText.substring(chipEnd, selectedText.length());
             }
         }
         return selectedText;

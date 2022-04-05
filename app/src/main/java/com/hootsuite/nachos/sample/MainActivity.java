@@ -25,6 +25,7 @@ import com.hootsuite.nachos.validator.ChipifyingNachoValidator;
 import com.hootsuite.nachos.validator.IllegalCharacterIdentifier;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -85,12 +86,15 @@ public class MainActivity extends AppCompatActivity {
         nachoTextView.setIllegalCharacterIdentifier(new IllegalCharacterIdentifier() {
             @Override
             public boolean isCharacterIllegal(Character c) {
-                return !c.toString().matches("[a-z0-9 ]");
+                return !c.toString().matches("[A-Za-z0-9 .,;\n]");
             }
         });
-        nachoTextView.addChipTerminator('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_ALL);
-        nachoTextView.addChipTerminator(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_TO_TERMINATOR);
-        nachoTextView.addChipTerminator(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
+        nachoTextView.setChipTerminators(new HashMap<Character, Integer>() {{
+                    put(',', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
+                    put(';', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
+                    put('\n', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
+                    put(' ', ChipTerminatorHandler.BEHAVIOR_CHIPIFY_CURRENT_TOKEN);
+        }});
         nachoTextView.setNachoValidator(new ChipifyingNachoValidator());
         nachoTextView.enableEditChipOnTouch(true, true);
         nachoTextView.setOnChipClickListener(new NachoTextView.OnChipClickListener() {
