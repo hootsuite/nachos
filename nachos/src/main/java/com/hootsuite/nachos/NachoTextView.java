@@ -629,6 +629,24 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         }
     }
 
+    /**
+     * Validates and corrects text indices to prevent StringIndexOutOfBoundsException.
+     * Ensures both start and end are within valid bounds [0, textLength] and that end >= start.
+     *
+     * @param start      the start index
+     * @param end        the end index  
+     * @param textLength the length of the text
+     * @return a Pair containing the validated (start, end) indices
+     */
+    private Pair<Integer, Integer> validateTextIndices(int start, int end, int textLength) {
+        start = Math.min(Math.max(0, start), textLength);
+        end = Math.min(Math.max(0, end), textLength);
+        if (end < start) {
+            end = start;
+        }
+        return new Pair<>(start, end);
+    }
+
     @Override
     public boolean onTextContextMenuItem(int id) {
         int start = getSelectionStart();
@@ -788,11 +806,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         int start = mChipTokenizer.findTokenStart(editable, end);
 
         // guard against java.lang.StringIndexOutOfBoundsException
-        start = Math.min(Math.max(0, start), editable.length());
-        end = Math.min(Math.max(0, end), editable.length());
-        if (end < start) {
-            end = start;
-        }
+        Pair<Integer, Integer> validatedIndices = validateTextIndices(start, end, editable.length());
+        start = validatedIndices.first;
+        end = validatedIndices.second;
 
         editable.replace(start, end, mChipTokenizer.terminateToken(text, data));
 
@@ -980,6 +996,12 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     private CharSequence getTextWithPlainTextSpans(int start, int end) {
         Editable editable = getText();
+
+        // Fix invalid string indices
+        Pair<Integer, Integer> validatedIndices = validateTextIndices(start, end, editable.length());
+        start = validatedIndices.first;
+        end = validatedIndices.second;
+
         String selectedText = editable.subSequence(start, end).toString();
 
         if (mChipTokenizer != null) {
