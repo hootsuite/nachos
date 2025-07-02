@@ -46,22 +46,31 @@ Nachos is not directly coupled to any data source so it allows for much more ext
 
 ## <a name="TOC-Installation"></a>Installation ##
 
-Add this line to your project level build.gradle:
+Add this to your project level build.gradle:
 
 ```groovy
 buildscript {
   repositories {
-    jcenter()
+    google()
+    mavenCentral()
   }
+}
 ```
 
 Add this line to your module level build.gradle:
 
 ```groovy
 dependencies {
-    implementation "com.hootsuite.android:nachos:1.1.1"
+    implementation "com.hootsuite.android:nachos:1.2.0"
 }
 ```
+
+**Requirements:**
+- Android SDK 21+ (Android 5.0+)
+- AndroidX libraries (migrated from Android Support Library)
+
+**AndroidX Migration Note:**
+This library has been migrated to use AndroidX. If your project is still using the Android Support Library, you'll need to migrate to AndroidX first. See the [AndroidX migration guide](https://developer.android.com/jetpack/androidx/migrate) for details.
 
 ## <a name="TOC-BasicUsage"></a>Basic Usage ##
 
