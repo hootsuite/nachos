@@ -8,7 +8,7 @@ public class CharSequenceMatchers {
         return new ToStringComparison(expected);
     }
 
-    static class ToStringComparison extends ArgumentMatcher<CharSequence> {
+    static class ToStringComparison implements ArgumentMatcher<CharSequence> {
 
         private CharSequence mExpected;
 
@@ -17,7 +17,7 @@ public class CharSequenceMatchers {
         }
 
         @Override
-        public boolean matches(Object argument) {
+        public boolean matches(CharSequence argument) {
             return mExpected.toString().equals(argument.toString());
         }
     }

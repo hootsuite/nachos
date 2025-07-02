@@ -10,6 +10,8 @@ android {
         applicationId "com.hootsuite.nachos.sample"
         versionCode 1
         versionName "1.0"
+        
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -17,12 +19,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+    namespace 'com.hootsuite.nachos.sample'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':nachos')
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }

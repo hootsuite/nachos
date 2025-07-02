@@ -7,13 +7,13 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DimenRes;
-import android.support.annotation.Dimension;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DimenRes;
+import androidx.annotation.Dimension;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
@@ -629,6 +629,24 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         }
     }
 
+    /**
+     * Validates and corrects text indices to prevent StringIndexOutOfBoundsException.
+     * Ensures both start and end are within valid bounds [0, textLength] and that end >= start.
+     *
+     * @param start      the start index
+     * @param end        the end index  
+     * @param textLength the length of the text
+     * @return a Pair containing the validated (start, end) indices
+     */
+    private Pair<Integer, Integer> validateTextIndices(int start, int end, int textLength) {
+        start = Math.min(Math.max(0, start), textLength);
+        end = Math.min(Math.max(0, end), textLength);
+        if (end < start) {
+            end = start;
+        }
+        return new Pair<>(start, end);
+    }
+
     @Override
     public boolean onTextContextMenuItem(int id) {
         int start = getSelectionStart();
@@ -788,11 +806,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         int start = mChipTokenizer.findTokenStart(editable, end);
 
         // guard against java.lang.StringIndexOutOfBoundsException
-        start = Math.min(Math.max(0, start), editable.length());
-        end = Math.min(Math.max(0, end), editable.length());
-        if (end < start) {
-            end = start;
-        }
+        Pair<Integer, Integer> validatedIndices = validateTextIndices(start, end, editable.length());
+        start = validatedIndices.first;
+        end = validatedIndices.second;
 
         editable.replace(start, end, mChipTokenizer.terminateToken(text, data));
 
@@ -980,6 +996,12 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     private CharSequence getTextWithPlainTextSpans(int start, int end) {
         Editable editable = getText();
+
+        // Fix invalid string indices
+        Pair<Integer, Integer> validatedIndices = validateTextIndices(start, end, editable.length());
+        start = validatedIndices.first;
+        end = validatedIndices.second;
+
         String selectedText = editable.subSequence(start, end).toString();
 
         if (mChipTokenizer != null) {

@@ -8,7 +8,7 @@ public class IntegerMatchers {
         return new BetweenComparison(lowerLimit, upperLimit);
     }
 
-    static class BetweenComparison extends ArgumentMatcher<Integer> {
+    static class BetweenComparison implements ArgumentMatcher<Integer> {
 
         private int mLowerLimit;
         private int mUpperLimit;
@@ -19,9 +19,8 @@ public class IntegerMatchers {
         }
 
         @Override
-        public boolean matches(Object argument) {
-            int argInt = (int)argument;
-            return mLowerLimit <= argInt && argInt <= mUpperLimit;
+        public boolean matches(Integer argument) {
+            return mLowerLimit <= argument && argument <= mUpperLimit;
         }
     }
 }
