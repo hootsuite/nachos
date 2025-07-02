@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 ext {
     bintrayRepo = 'maven'
@@ -48,6 +49,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    
     namespace 'com.hootsuite.nachos'
     
     testOptions {
@@ -60,6 +65,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.core:core:1.12.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.22"
     
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.11.1'

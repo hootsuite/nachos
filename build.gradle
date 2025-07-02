@@ -15,6 +15,7 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
         // Removed deprecated Bintray plugins since Bintray was shut down
     }
 }
