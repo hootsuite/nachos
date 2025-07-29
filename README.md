@@ -1,5 +1,8 @@
 # Nachos for Android #
 
+> **⚠️ Release Notice:** The latest 2.0.0 library is not yet available on Maven due to release process issues and is pending official release. In the meantime, you can either clone this repository and use it locally, or use a prior version. Thank you for your patience and interest in the library!
+
+
 [![](https://jitpack.io/v/mgbckr/nachos-v2.svg)](https://jitpack.io/#mgbckr/nachos-v2)
 
 ## Table of Contents ##
