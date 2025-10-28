@@ -18,6 +18,7 @@
     <string name="label_chip_text_view">Try it out:</string>
     <string name="hint_chip_text_view">Type to create plain chips</string>
     <string name="hint_chip_text_view_with_icons">Type to create chips with icons</string>
+    <string name="hint_chip_text_view_with_icons_2">Type to create chips with icons, this hint is supposed to be very long to see how the margins behave</string>
 
     <string name="btn_list_chip_values">List Chip Values</string>
     <string name="btn_list_chip_and_token_values">List Chip and Token Values</string>
