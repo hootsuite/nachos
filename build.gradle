@@ -1,13 +1,13 @@
 buildscript {
     ext {
-        minSdkVersion = 21
-        compileSdkVersion = 34
-        targetSdkVersion = 34
+        minSdkVersion = 29
+        compileSdkVersion = 36
+        targetSdkVersion = 35
         testSdkVersion = 28
 
         buildToolsVersion = "34.0.0"
         
-        gradleVersion = "8.1.4"
+        gradleVersion = "8.9.2"
     }
     repositories {
         google()
