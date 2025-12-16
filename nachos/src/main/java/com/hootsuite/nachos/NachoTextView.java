@@ -22,6 +22,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -140,6 +141,10 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
      */
     private boolean mUsingDefaultPadding = true;
 
+    // Gravity management
+    private int mDefaultGravity;
+    private boolean mUsingHintGravity = false;
+
     // Touch events
     @Nullable
     private OnChipClickListener mOnChipClickListener;
@@ -189,6 +194,10 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
 
     private void init(@Nullable AttributeSet attrs) {
         Context context = getContext();
+
+        // Capture the default gravity before any modifications
+        mDefaultGravity = getGravity();
+        updateGravity();
 
         if (attrs != null) {
             TypedArray attributes = context.getTheme().obtainStyledAttributes(
@@ -272,6 +281,27 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
     }
 
     /**
+     * Updates the gravity to align the cursor with the first line when the hint is showing.
+     * When the text is empty (hint visible), gravity is set to TOP|START to align the cursor
+     * with the first line of multi-line hints. When text or chips are present, gravity reverts
+     * to the default value.
+     */
+    private void updateGravity() {
+        Editable text = getText();
+        boolean textIsEmpty = text == null || text.length() == 0;
+
+        if (textIsEmpty && !mUsingHintGravity) {
+            // Text is empty (hint is showing) - align cursor to top
+            mUsingHintGravity = true;
+            super.setGravity(Gravity.TOP | Gravity.START);
+        } else if (!textIsEmpty && mUsingHintGravity) {
+            // Text/chips are present - revert to default gravity
+            mUsingHintGravity = false;
+            super.setGravity(mDefaultGravity);
+        }
+    }
+
+    /**
      * Sets the padding on this View. The left and right padding will be handled as they normally would in a TextView. The top and bottom padding passed
      * here will be the padding that is used when there are one or more chips in the text view. When there are no chips present, the padding will be
      * increased to make sure the overall height of the text view stays the same, since chips take up more vertical space than plain text.
@@ -289,6 +319,15 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         mDefaultPaddingTop = top;
         mDefaultPaddingBottom = bottom;
         updatePadding();
+    }
+
+    @Override
+    public void setGravity(int gravity) {
+        // Update the default gravity so it can be restored when text is present
+        mDefaultGravity = gravity;
+        super.setGravity(gravity);
+        // Reset the flag so updateGravity can apply the hint gravity if needed
+        mUsingHintGravity = false;
     }
 
     public int getChipHorizontalSpacing() {
@@ -904,6 +943,9 @@ public class NachoTextView extends MultiAutoCompleteTextView implements TextWatc
         }
 
         endUnwatchedTextChange();
+
+        // Update gravity based on whether hint is showing
+        updateGravity();
     }
 
     private void handleTextChanged(int start, int end) {

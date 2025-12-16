@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mInfoBodyView;
     private NachoTextView mNachoTextView;
     private NachoTextView mNachoTextViewWithIcons;
+    private NachoTextView mNachoTextViewWithIcons2;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         mInfoBodyView = findViewById(R.id.info_body);
         mNachoTextView = findViewById(R.id.nacho_text_view);
         mNachoTextViewWithIcons = findViewById(R.id.nacho_text_view_with_icons);
-        
+        mNachoTextViewWithIcons2 = findViewById(R.id.nacho_text_view_with_icons_2);
+
         // Set up click listeners
         findViewById(R.id.list_chip_values).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupChipTextView(mNachoTextView);
         setupChipTextView(mNachoTextViewWithIcons);
+        setupChipTextView(mNachoTextViewWithIcons2);
 
         List<String> testList = new ArrayList<>();
         testList.add("testing");
@@ -86,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
         mNachoTextView.setText(testList);
 
         mNachoTextViewWithIcons.setChipTokenizer(new SpanChipTokenizer<>(this, new ChipSpanChipCreator() {
+            @Override
+            public ChipSpan createChip(@NonNull Context context, @NonNull CharSequence text, Object data) {
+                return new ChipSpan(context, text, ContextCompat.getDrawable(MainActivity.this, R.mipmap.ic_launcher), data);
+            }
+
+            @Override
+            public void configureChip(@NonNull ChipSpan chip, @NonNull ChipConfiguration chipConfiguration) {
+                super.configureChip(chip, chipConfiguration);
+            }
+        }, ChipSpan.class));
+        mNachoTextViewWithIcons2.setChipTokenizer(new SpanChipTokenizer<>(this, new ChipSpanChipCreator() {
             @Override
             public ChipSpan createChip(@NonNull Context context, @NonNull CharSequence text, Object data) {
                 return new ChipSpan(context, text, ContextCompat.getDrawable(MainActivity.this, R.mipmap.ic_launcher), data);
