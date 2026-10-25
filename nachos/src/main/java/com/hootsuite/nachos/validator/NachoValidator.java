@@ -22,7 +22,7 @@ public interface NachoValidator {
      *
      * @param invalidText A string that doesn't pass validation: isValid(invalidText)
      *                    returns false
-     * @return A string based on invalidText such as invoking isValid() on it returns true.
+     * @return A string based on invalidText such that invoking isValid() on it returns true.
      * @see #isValid(ChipTokenizer, CharSequence)
      */
     CharSequence fixText(@NonNull ChipTokenizer chipTokenizer, CharSequence invalidText);

@@ -24,7 +24,7 @@ public class ChipConfiguration {
      * @param chipTextSize        the font size (in pixels) to use for the text of the chips
      * @param chipHeight          the height (in pixels) of each chip
      * @param chipVerticalSpacing the amount of vertical space (in pixels) to put between chips on consecutive lines
-     * @param maxAvailableWidth   the maximum available with for a chip (the width of a full line of text in the text view)
+     * @param maxAvailableWidth   the maximum available width for a chip (the width of a full line of text in the text view)
      */
     ChipConfiguration(int chipHorizontalSpacing,
                       ColorStateList chipBackground,

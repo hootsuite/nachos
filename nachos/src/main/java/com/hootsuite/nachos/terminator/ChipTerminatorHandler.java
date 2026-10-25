@@ -33,7 +33,7 @@ public interface ChipTerminatorHandler {
     int BEHAVIOR_CHIPIFY_TO_TERMINATOR = 2;
 
     /**
-     * Constant for use with {@link #setPasteBehavior(int)}. Use this if a paste should behave the same as a standard text input (the chip temrinators
+     * Constant for use with {@link #setPasteBehavior(int)}. Use this if a paste should behave the same as a standard text input (the chip terminators
      * will all behave according to their pre-determined behavior set through {@link #addChipTerminator(char, int)} or {@link #setChipTerminators(Map)}).
      */
     int PASTE_BEHAVIOR_USE_DEFAULT = -1;
@@ -87,7 +87,7 @@ public interface ChipTerminatorHandler {
      * @param end          the index at which to end looking for chip terminators (exclusive)
      * @param isPasteEvent true if this handling is for a paste event in which case the behavior set in {@link #setPasteBehavior(int)} will be used,
      *                     otherwise false
-     * @return an non-negative integer indicating the index where the cursor (selection) should be placed once the handling is complete,
+     * @return a non-negative integer indicating the index where the cursor (selection) should be placed once the handling is complete,
      *         or a negative integer indicating that the cursor should not be moved.
      */
     int findAndHandleChipTerminators(@NonNull ChipTokenizer tokenizer, @NonNull Editable text, int start, int end, boolean isPasteEvent);

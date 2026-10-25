@@ -19,7 +19,7 @@ import java.util.List;
  * </p>
  * <p>
  *     The CharSequences passed to the ChipTokenizer methods may contain both chipped text
- *     and plain text so the tokenizer must have some method of distinguishing between the two (e.g. using a delimeter character.
+ *     and plain text so the tokenizer must have some method of distinguishing between the two (e.g. using a delimiter character).
  *     The {@link #terminateToken(CharSequence, Object)} method is where a chip can be formed and returned to replace the plain text.
  *     Whatever class the implementation deems to represent a chip, must implement the {@link Chip} interface.
  * </p>
